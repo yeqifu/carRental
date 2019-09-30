@@ -2,14 +2,14 @@ package com.yeqifu.sys.service.impl;
 
 import com.yeqifu.sys.domain.User;
 import com.yeqifu.sys.mapper.UserMapper;
-import com.yeqifu.sys.service.UserService;
+import com.yeqifu.sys.service.IUserService;
 import com.yeqifu.sys.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
 
     @Autowired
     private UserMapper userMapper;

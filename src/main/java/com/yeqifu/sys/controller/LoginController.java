@@ -2,7 +2,7 @@ package com.yeqifu.sys.controller;
 
 import com.yeqifu.sys.constast.SysConstast;
 import com.yeqifu.sys.domain.User;
-import com.yeqifu.sys.service.UserService;
+import com.yeqifu.sys.service.IUserService;
 import com.yeqifu.sys.utils.WebUtils;
 import com.yeqifu.sys.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class LoginController {
 
     @Autowired
-    private UserService userService;
+    private IUserService userService;
 
     /**
      * 跳转到登陆页面
