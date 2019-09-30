@@ -1,0 +1,124 @@
+[
+	{
+		"title": "基础管理",
+		"icon": "&#xe655;",
+		"href": "page/news/newsList.html",
+		"spread": true,
+		"children": [
+			{
+				"title": "客户管理",
+				"icon": "&#xe66f;",
+				"href": "page/404.html",
+				"spread": false
+			},
+			{
+				"title": "车辆管理",
+				"icon": "&#xe665;",
+				"href": "page/login/login.html",
+				"spread": false,
+				"target": "_blank"
+			}
+		]
+	},
+	{
+		"title": "业务管理",
+		"icon": "&#xe634;",
+		"href": "page/img/images.html",
+		"spread": true,
+		"children": [
+			{
+				"title": "汽车出租",
+				"icon": "&#xe61c;",
+				"href": "page/404.html",
+				"spread": false
+			},
+			{
+				"title": "出租单管理",
+				"icon": "&#xe609;",
+				"href": "page/login/login.html",
+				"spread": false
+			},
+			{
+				"title": "汽车入库",
+				"icon": "&#xe61c;",
+				"href": "page/404.html",
+				"spread": false
+			},
+			{
+				"title": "检查单管理",
+				"icon": "&#xe609;",
+				"href": "page/login/login.html",
+				"spread": false,
+				"target": "_blank"
+			}
+		]
+	},
+	{
+		"title": "系统管理",
+		"icon": "&#xe716;",
+		"href": "",
+		"spread": false,
+		"children": [
+			{
+				"title": "菜单管理",
+				"icon": "&#xe61c;",
+				"href": "page/404.html",
+				"spread": false
+			},
+			{
+				"title": "角色管理",
+				"icon": "&#xe609;",
+				"href": "page/login/login.html",
+				"spread": false,
+				"target": "_blank"
+			},
+			{
+				"title": "用户管理",
+				"icon": "&#xe609;",
+				"href": "page/login/login.html",
+				"spread": false,
+				"target": "_blank"
+			},
+			{
+				"title": "日志管理",
+				"icon": "&#xe609;",
+				"href": "page/login/login.html",
+				"spread": false
+			},
+			{
+				"title": "系统公告",
+				"icon": "&#xe609;",
+				"href": "page/login/login.html",
+				"spread": false
+			}
+		]
+	},
+	{
+		"title": "统计分析",
+		"icon": "&#xe630;",
+		"href": "",
+		"spread": false,
+		"children": [
+			{
+				"title": "客户地区统计",
+				"icon": "&#xe61c;",
+				"href": "page/404.html",
+				"spread": false
+			},
+			{
+				"title": "公司年度月份销售额曲线图",
+				"icon": "&#xe609;",
+				"href": "page/login/login.html",
+				"spread": false,
+				"target": "_blank"
+			},
+			{
+				"title": "业务员年度销售额柱子图",
+				"icon": "&#xe609;",
+				"href": "page/login/login.html",
+				"spread": false,
+				"target": "_blank"
+			}
+		]
+	}
+]
