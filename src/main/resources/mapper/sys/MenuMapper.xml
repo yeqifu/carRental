@@ -138,8 +138,19 @@
         <if test="available!=null">
             and available=#{available}
         </if>
+        <if test="id!=null">
+            and (id=#{id} or pid=#{id})
+        </if>
     </where>
   </select>
 
+  <!--根据pid查询菜单数量-->
+  <select id="queryMenuByPid" resultType="java.lang.Integer">
+    select count(1) from sys_menu where pid=#{pid}
+  </select>
 
+  <!--根据菜单id删除sys_role_menu里面的数据-->
+  <delete id="deleteRoleMenuByMid">
+    delete from sys_role_menu where mid=#{mid}
+  </delete>
 </mapper>

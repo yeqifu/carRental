@@ -1,6 +1,7 @@
 package com.yeqifu.sys.mapper;
 
 import com.yeqifu.sys.domain.Menu;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -21,4 +22,17 @@ public interface MenuMapper {
      * 查询所有菜单
      */
     List<Menu> queryAllMenu(Menu menu);
+
+    /**
+     * 根据pid查询菜单数量
+     * @param pid
+     * @return
+     */
+    Integer queryMenuByPid(@Param("pid")Integer pid);
+
+    /**
+     * 根据菜单id删除sys_role_menu里面的数据
+     * @param mid
+     */
+    void deleteRoleMenuByMid(@Param("mid") Integer mid);
 }
