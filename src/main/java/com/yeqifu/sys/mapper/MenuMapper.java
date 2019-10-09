@@ -35,4 +35,12 @@ public interface MenuMapper {
      * @param mid
      */
     void deleteRoleMenuByMid(@Param("mid") Integer mid);
+
+    /**
+     * 根据角色ID查询菜单
+     * @param available
+     * @param roleid
+     * @return
+     */
+    List<Menu> queryMenuByRoleId(@Param("available") Integer available,@Param("rid") Integer roleid);
 }

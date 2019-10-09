@@ -153,4 +153,11 @@
   <delete id="deleteRoleMenuByMid">
     delete from sys_role_menu where mid=#{mid}
   </delete>
+
+  <!--根据角色id查询菜单-->
+  <select id="queryMenuByRoleId" resultMap="BaseResultMap">
+    select t1.* from sys_menu t1 inner join sys_role_menu t2 on(t1.id=t2.mid) WHERE t2.rid=#{rid} and t1.available=#{available}
+  </select>
+
+
 </mapper>

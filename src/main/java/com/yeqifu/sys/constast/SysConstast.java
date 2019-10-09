@@ -4,6 +4,7 @@ package com.yeqifu.sys.constast;
  * 常量接口
  */
 public interface SysConstast {
+
     String USER_LOGIN_ERROR_MSG = "用户名或密码不正确";
 
     /**
@@ -45,6 +46,12 @@ public interface SysConstast {
     Integer CODE_SUCCESS = 0;//操作成功
     Integer CODE_ERROR = -1;//操作失败
 
-
+    /**
+     * 公用常量
+     */
+    Integer CODE_ZERO = 0;
+    Integer CODE_ONE = 1;
+    Integer CODE_TWO = 2;
+    Integer CODE_THREE = 3;
 
 }

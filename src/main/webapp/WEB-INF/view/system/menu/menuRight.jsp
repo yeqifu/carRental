@@ -51,12 +51,18 @@
         <div class="layui-inline">
             <label class="layui-form-label">菜单名称:</label>
             <div class="layui-input-inline" style="padding: 5px">
-                <input type="text" name="title" autocomplete="off" class="layui-input layui-input-inline" placeholder="请输入菜单名称" style="height: 30px;border-radius: 10px">
+                <input type="text" name="title" autocomplete="off" class="layui-input layui-input-inline"
+                       placeholder="请输入菜单名称" style="height: 30px;border-radius: 10px">
             </div>
         </div>
         <div class="layui-inline">
-            <button type="button" class="layui-btn layui-btn-normal layui-icon layui-icon-search layui-btn-radius layui-btn-sm" id="doSearch">查询</button>
-            <button type="reset" class="layui-btn layui-btn-warm layui-icon layui-icon-refresh layui-btn-radius layui-btn-sm">重置</button>
+            <button type="button"
+                    class="layui-btn layui-btn-normal layui-icon layui-icon-search layui-btn-radius layui-btn-sm"
+                    id="doSearch">查询
+            </button>
+            <button type="reset"
+                    class="layui-btn layui-btn-warm layui-icon layui-icon-refresh layui-btn-radius layui-btn-sm">重置
+            </button>
         </div>
     </div>
 </form>
@@ -80,7 +86,8 @@
                 <div class="layui-unselect layui-form-select" id="pid_div">
                     <div class="layui-select-title">
                         <input type="hidden" name="pid" id="pid">
-                        <input type="text" name="pid_str" id="pid_str" placeholder="请选择" readonly="" class="layui-input layui-unselect">
+                        <input type="text" name="pid_str" id="pid_str" placeholder="请选择" readonly=""
+                               class="layui-input layui-unselect">
                         <i class="layui-edge"></i>
                     </div>
                 </div>
@@ -110,7 +117,8 @@
             <div class="layui-inline">
                 <label class="layui-form-label">菜单图标:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="icon" placeholder="请输入菜单图标" lay-verify="required" autocomplete="off" class="layui-input">
+                    <input type="text" name="icon" placeholder="请输入菜单图标" lay-verify="required" autocomplete="off"
+                           class="layui-input">
                 </div>
             </div>
             <div class="layui-inline">
@@ -137,15 +145,21 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <div class="layui-input-block"  style="text-align: center;padding-right: 120px">
-                <button type="button" class="layui-btn layui-btn-normal layui-btn-md layui-icon layui-icon-release layui-btn-radius" lay-filter="doSubmit" lay-submit="">提交</button>
-                <button type="reset" class="layui-btn layui-btn-warm layui-btn-md layui-icon layui-icon-refresh layui-btn-radius">重置</button>
+            <div class="layui-input-block" style="text-align: center;padding-right: 120px">
+                <button type="button"
+                        class="layui-btn layui-btn-normal layui-btn-md layui-icon layui-icon-release layui-btn-radius"
+                        lay-filter="doSubmit" lay-submit="">提交
+                </button>
+                <button type="reset"
+                        class="layui-btn layui-btn-warm layui-btn-md layui-icon layui-icon-refresh layui-btn-radius">重置
+                </button>
             </div>
         </div>
     </form>
 </div>
 
 <script src="${yeqifu}/static/layui/layui.js"></script>
+<script src="${yeqifu}/static/layui_ext/dist/dtree.js"></script>
 <script type="text/javascript">
     var tableIns;
     layui.extend({
@@ -208,7 +222,7 @@
                     break;
             }
             ;
-        })
+        });
 
         //监听行工具事件
         table.on('tool(menuTable)', function (obj) {
@@ -216,16 +230,34 @@
             var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
             if (layEvent === 'del') { //删除
                 //判断当前菜单有没有子节点
-                $.post("${yeqifu}/menu/checkMenuHasChildren.action?id="+data.id,function (obj) {
-                    if(obj.code>=0){
+                $.post("${yeqifu}/menu/checkMenuHasChildren.action?id=" + data.id, function (obj) {
+                    if (obj.code >= 0) {
                         layer.msg("当前菜单有子节点，请先删除子节点");
-                    }else {
-                        layer.confirm('真的删除【'+data.title+'】这个菜单么？', function (index) {
+                    } else {
+                        layer.confirm('真的删除【' + data.title + '】这个菜单么？', function (index) {
                             //向服务端发送删除指令
-                            $.post("${yeqifu}/menu/deleteMenu.action",{id:data.id},function (res) {
+                            $.post("${yeqifu}/menu/deleteMenu.action", {id: data.id}, function (res) {
                                 layer.msg(res.msg);
                                 //刷新数据表格
                                 tableIns.reload();
+
+
+                                /*tableIns.reload().render({
+                                    done: function(res, curr, count){
+                                        //如果是异步请求数据方式，res即为你接口返回的信息。
+                                        if(curr!=(count%10)){
+                                            alert(curr);
+                                            alert(count);
+                                            tableIns.reload();
+                                        }else{
+                                            this.data.page=curr-1;
+                                            alert(data.page);
+                                            reloadPage(data.page);
+                                        }
+                                    }
+                                });*/
+
+
                                 //刷新左边的数
                                 window.parent.left.menuTree.reload();
                                 //刷新添加和修改的下拉树
@@ -242,6 +274,7 @@
 
         var url;
         var mainIndex;
+
 
         //打开添加页面
         function openAddMenu() {
@@ -271,7 +304,7 @@
                     url = "${yeqifu}/menu/updateMenu.action";
                     //反选下拉树
                     var pid = data.pid;
-                    var params = dtree.dataInit("menuTree",pid);
+                    var params = dtree.dataInit("menuTree", pid);
                     //移除打开的样式
                     $("#menuSelectDiv").removeClass("layui-show");
                     //给下拉框的text框赋值
@@ -323,6 +356,12 @@
     function reloadTable(id) {
         tableIns.reload({
             url: "${yeqifu}/menu/loadAllMenu.action?id=" + id
+        })
+    }
+
+    function reloadPage(page) {
+        tableIns.reload({
+            url: "${yeqifu}/menu/loadAllMenu.action?page=" + page
         })
     }
 </script>

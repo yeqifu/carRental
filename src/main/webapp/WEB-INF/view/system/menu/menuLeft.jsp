@@ -45,7 +45,6 @@
                 response: {message: "msg", statusCode: 0},  //修改response中返回数据的定义
                 dataFormat: "list",  //配置data的风格为list
                 url: "${yeqifu}/menu/loadMenuManagerLeftTreeJson.action?spread=1" // 使用url加载（可与data加载同时存在）
-                //url: "${yeqifu}/static/layui_ext/json/case/asyncTreeCheckBox2.json" // 使用url加载（可与data加载同时存在）
             });
 
             //监听树的节点点击 事件

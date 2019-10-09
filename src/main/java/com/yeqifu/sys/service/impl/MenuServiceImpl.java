@@ -29,7 +29,6 @@ public class MenuServiceImpl implements IMenuService {
     }
 
     /**
-     *
      * @param menuVo
      * @param userId
      * @return
@@ -51,21 +50,38 @@ public class MenuServiceImpl implements IMenuService {
         return new DataGridView(page.getTotal(),data);
     }
 
+    /**
+     * 添加菜单
+     * @param menuVo
+     */
     @Override
     public void addMenu(MenuVo menuVo) {
         this.menuMapper.insertSelective(menuVo);
     }
 
+    /**
+     * 更新菜单
+     * @param menuVo
+     */
     @Override
     public void updateMenu(MenuVo menuVo) {
         this.menuMapper.updateByPrimaryKeySelective(menuVo);
     }
 
+    /**
+     * 根据pid查询菜单数量
+     * @param pid
+     * @return
+     */
     @Override
     public Integer queryMenuByPid(Integer pid) {
         return this.menuMapper.queryMenuByPid(pid);
     }
 
+    /**
+     * 删除菜单
+     * @param menuVo
+     */
     @Override
     public void deleteMenu(MenuVo menuVo) {
         //删除菜单表的数据
