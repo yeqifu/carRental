@@ -142,6 +142,7 @@
             and (id=#{id} or pid=#{id})
         </if>
     </where>
+
   </select>
 
   <!--根据pid查询菜单数量-->

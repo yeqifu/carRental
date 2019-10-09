@@ -2,6 +2,9 @@ package com.yeqifu.sys.mapper;
 
 import com.yeqifu.sys.domain.User;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
 @Repository
 public interface UserMapper {
     int deleteByPrimaryKey(Integer userid);
@@ -20,4 +23,12 @@ public interface UserMapper {
      * 登陆
      */
     User login(User user);
+
+    /**
+     * 查询用户
+     * @param user
+     * @return
+     */
+    List<User> queryAllUser(User user);
+
 }

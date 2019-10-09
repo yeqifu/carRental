@@ -46,4 +46,13 @@ public class SysController {
         return "system/role/roleManager";
     }
 
+    /**
+     * 跳转到用户管理
+     * @return
+     */
+    @RequestMapping("toUserManager")
+    public String toUserManager(){
+        return "system/user/userManager";
+    }
+
 }

@@ -286,7 +286,6 @@
                         //关闭弹出层
                         layer.close(mainIndex);
                     })
-                    //console.log(params);
                 },
                 success:function (index) {
                     //初始化树

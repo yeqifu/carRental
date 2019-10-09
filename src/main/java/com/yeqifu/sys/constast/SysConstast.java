@@ -54,4 +54,6 @@ public interface SysConstast {
     Integer CODE_TWO = 2;
     Integer CODE_THREE = 3;
 
+    String USER_DEFAULT_PWD="123456";
+
 }

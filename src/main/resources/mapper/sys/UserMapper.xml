@@ -170,4 +170,32 @@
     where loginname=#{loginname} and pwd=#{pwd}
   </select>
 
+  <!--用户查询-->
+  <select id="queryAllUser" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    <where>
+      <if test="realname!=null and realname!=''">
+        and realname like concat("%",#{realname},"%")
+      </if>
+      <if test="loginname!=null and loginname!=''">
+        and loginname like concat("%",#{loginname},"%")
+      </if>
+      <if test="identity!=null and identity!=''">
+        and identity like concat("%",#{identity},"%")
+      </if>
+      <if test="address!=null and address!=''">
+        and address like concat("%",#{address},"%")
+      </if>
+      <if test="phone!=null and phone!=''">
+        and phone like concat("%",#{phone},"%")
+      </if>
+      <if test="sex!=null">
+        and sex=#{sex}
+      </if>
+      and type!=1
+    </where>
+  </select>
+
 </mapper>
