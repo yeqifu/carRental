@@ -89,7 +89,7 @@
 
 <!-- 数据表格开始 -->
 <table class="layui-hide" id="userTable" lay-filter="userTable"></table>
-<div style="display: none;" id="userToolBar">
+<div id="userToolBar" style="display: none;">
     <button type="button" class="layui-btn layui-btn-sm layui-btn-radius" lay-event="add">增加</button>
     <button type="button" class="layui-btn layui-btn-danger layui-btn-sm layui-btn-radius" lay-event="deleteBatch">批量删除</button>
 </div>
@@ -177,8 +177,8 @@
 </div>
 
 <%--用户分配角色的弹出层开始--%>
-<div style="display: none" id="selectUserRole">
-    <ul id="menuTree" class="dtree" data-id="0"></ul>
+<div style="display: none;padding: 10px" id="selectUserRole">
+    <table class="layui-hide" id="roleTable" lay-filter="roleTable"></table>
 </div>
 
 
@@ -339,7 +339,44 @@
         }
         //打开分配角色的弹出层
         function openselectUserRole(data) {
-            
+            mainIndex=layer.open({
+                type:1,
+                title:'给【'+data.realname+'】分配角色',
+                content:$("#selectUserRole"),
+                area:['700px','390px'],
+                btnAlign:'c',
+                btn:['<div class="layui-icon layui-icon-release">确认分配</div>','<div class="layui-icon layui-icon-close">取消分配</div>'],
+                yes:function (index, layero) {
+                    //得到选中的数据行
+                    var checkStatus = table.checkStatus('roleTable');
+                    var roleData = checkStatus.data;
+                    var params="userid="+data.userid;
+                    $.each(roleData,function(i,item){
+                        params+="&ids="+item.roleid;
+                    });
+                    //保存
+                    $.post("${yeqifu}/user/saveUserRole.action",params,function (obj) {
+                        layer.msg(obj.msg);
+                        //关闭弹出层
+                        layer.close(mainIndex);
+                    })
+                },
+                success:function (index) {
+                    //渲染数据表格
+                    var roleTableIns = table.render({
+                        elem: '#roleTable'   //渲染的目标对象
+                        , url: '${yeqifu}/user/initUserRole.action?userid='+data.userid //数据接口
+                        , title: '角色列表'//数据导出来的标题
+                        , cellMinWidth: 100 //设置列的最小默认宽度
+                        , cols: [[   //列表数据
+                            {type: 'checkbox', fixed: 'left'}
+                            , {field: 'roleid', title: 'ID', align: 'center'}
+                            , {field: 'rolename', title: '角色名称', align: 'center'}
+                            , {field: 'roledesc', title: '角色备注', align: 'center'}
+                        ]]
+                    });
+                }
+            });
         }
 
     });

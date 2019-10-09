@@ -198,4 +198,10 @@
     </where>
   </select>
 
+  <!--保存用户和角色的关系-->
+  <insert id="insertUserRole">
+    insert into sys_role_user(uid,rid) VALUES (#{uid},#{rid})
+  </insert>
+
+
 </mapper>

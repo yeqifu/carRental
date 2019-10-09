@@ -3,17 +3,23 @@ package com.yeqifu.sys.service.impl;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.yeqifu.sys.constast.SysConstast;
+import com.yeqifu.sys.domain.Role;
 import com.yeqifu.sys.domain.User;
 import com.yeqifu.sys.mapper.RoleMapper;
 import com.yeqifu.sys.mapper.UserMapper;
 import com.yeqifu.sys.service.IUserService;
 import com.yeqifu.sys.utils.DataGridView;
+import com.yeqifu.sys.utils.TreeNode;
 import com.yeqifu.sys.vo.UserVo;
+import org.omg.CORBA.DATA_CONVERSION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -107,5 +113,58 @@ public class UserServiceImpl implements IUserService {
         user.setPwd(DigestUtils.md5DigestAsHex(SysConstast.USER_DEFAULT_PWD.getBytes()));
         //更新
         this.userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    /**
+     * 加载用户管理的分配角色的数据
+     * @param userid
+     * @return
+     */
+    @Override
+    public DataGridView queryUserRole(Integer userid) {
+        //1.查询所有可用的角色
+        Role role = new Role();
+        role.setAvailable(SysConstast.AVAILABLE_TRUE);
+        List<Role> allRole = this.roleMapper.queryAllRole(role);
+        //2.根据用户ID查询已拥有的角色
+        List<Role> userRole=this.roleMapper.queryRoleByUid(SysConstast.AVAILABLE_TRUE,userid);
+
+        List<Map<String,Object>> data = new ArrayList<>();
+
+        for (Role r1 : allRole){
+            Boolean LAY_CHECKED=false;
+            for (Role r2 : userRole) {
+                if (r1.getRoleid()==r2.getRoleid()){
+                    LAY_CHECKED=true;
+                }
+            }
+            Map<String,Object> map=new HashMap<String,Object>();
+            map.put("roleid",r1.getRoleid());
+            map.put("rolename",r1.getRolename());
+            map.put("roledesc",r1.getRoledesc());
+            map.put("LAY_CHECKED",LAY_CHECKED);
+            data.add(map);
+
+        }
+
+        return new DataGridView(data);
+    }
+
+    /**
+     * 保存用户和角色的关系
+     * @param userVo
+     */
+    @Override
+    public void saveUserRole(UserVo userVo) {
+        Integer userid = userVo.getUserid();
+        Integer[] roleIds = userVo.getIds();
+        //根据用户id删除sys_role_user里面的数据
+        this.roleMapper.deleteRoleUserByUid(userid);
+        //保存关系
+        if (roleIds!=null&&roleIds.length>0){
+            for (Integer rid : roleIds){
+                this.userMapper.insertUserRole(userid,rid);
+            }
+        }
     }
 }

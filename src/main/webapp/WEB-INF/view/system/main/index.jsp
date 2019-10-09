@@ -75,7 +75,7 @@
                                 class="layui-badge-dot"></span></a></dd>
                         <dd pc><a href="javascript:;" class="changeSkin"><i
                                 class="layui-icon">&#xe61b;</i><cite>更换皮肤</cite></a></dd>
-                        <dd><a href="page/login/login.html" class="signOut"><i
+                        <dd><a href="${yeqifu}" class="signOut"><i
                                 class="seraph icon-tuichu"></i><cite>退出</cite></a></dd>
                     </dl>
                 </li>

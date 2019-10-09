@@ -1,6 +1,7 @@
 package com.yeqifu.sys.mapper;
 
 import com.yeqifu.sys.domain.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -31,4 +32,10 @@ public interface UserMapper {
      */
     List<User> queryAllUser(User user);
 
+    /**
+     * 保存用户和角色的关系
+     * @param userid
+     * @param rid
+     */
+    void insertUserRole(@Param("uid") Integer userid,@Param("rid") Integer rid);
 }
