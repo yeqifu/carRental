@@ -203,5 +203,4 @@
     insert into sys_role_user(uid,rid) VALUES (#{uid},#{rid})
   </insert>
 
-
 </mapper>

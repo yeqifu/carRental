@@ -55,4 +55,13 @@ public class SysController {
         return "system/user/userManager";
     }
 
+    /**
+     * 跳转到日志管理
+     * @return
+     */
+    @RequestMapping("toLogInfoManager")
+    public String toLogInfoManager(){
+        return "system/logInfo/logInfoManager";
+    }
+
 }

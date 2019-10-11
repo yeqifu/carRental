@@ -184,7 +184,7 @@
                 , {field: 'id', title: 'ID', align: 'center', width: '50'}
                 , {field: 'pid', title: '父节点ID', align: 'center', width: '90'}
                 , {field: 'title', title: '菜单名称', align: 'center', width: '160'}
-                , {field: 'href', title: '菜单地址', align: 'center', width: '220'}
+                , {field: 'href', title: '菜单地址', align: 'center', width: '225'}
                 , {
                     field: 'spread', title: '是否展开', align: 'center', width: '90', templet: function (d) {
                         return d.spread == '1' ? '<font color=blue>展开</font>' : '<font color=red>不展开</font>';
@@ -241,7 +241,6 @@
                                 //刷新数据表格
                                 tableIns.reload();
 
-
                                 /*tableIns.reload().render({
                                     done: function(res, curr, count){
                                         //如果是异步请求数据方式，res即为你接口返回的信息。
@@ -256,7 +255,6 @@
                                         }
                                     }
                                 });*/
-
 
                                 //刷新左边的数
                                 window.parent.left.menuTree.reload();
