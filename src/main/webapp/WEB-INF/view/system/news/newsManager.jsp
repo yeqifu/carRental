@@ -170,8 +170,18 @@
                 , {field: 'createtime', title: '发布时间', align: 'center'}
                 , {field: 'opername', title: '发布人', align: 'center'}
                 , {fixed: 'right', title: '操作', toolbar: '#newsBar', align: 'center'}
-            ]]
-        })
+            ]],
+            done:function (data, curr, count) {
+                //不是第一页时，如果当前返回的数据为0那么就返回上一页
+                if(data.data.length==0&&curr!=1){
+                    tableIns.reload({
+                        page:{
+                            curr:curr-1
+                        }
+                    })
+                }
+            }
+        });
 
         //模糊查询
         $("#doSearch").click(function () {

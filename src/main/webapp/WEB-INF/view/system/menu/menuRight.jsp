@@ -202,7 +202,17 @@
                     }
                 }
                 , {fixed: 'right', title: '操作', toolbar: '#menuBar', width: 120, align: 'center'}
-            ]]
+            ]],
+            done:function (data, curr, count) {
+                //不是第一页时，如果当前返回的数据为0那么就返回上一页
+                if(data.data.length==0&&curr!=1){
+                    tableIns.reload({
+                        page:{
+                            curr:curr-1
+                        }
+                    })
+                }
+            }
         })
 
         //模糊查询
@@ -241,22 +251,6 @@
                                 layer.msg(res.msg);
                                 //刷新数据表格
                                 tableIns.reload();
-
-                                /*tableIns.reload().render({
-                                    done: function(res, curr, count){
-                                        //如果是异步请求数据方式，res即为你接口返回的信息。
-                                        if(curr!=(count%10)){
-                                            alert(curr);
-                                            alert(count);
-                                            tableIns.reload();
-                                        }else{
-                                            this.data.page=curr-1;
-                                            alert(data.page);
-                                            reloadPage(data.page);
-                                        }
-                                    }
-                                });*/
-
                                 //刷新左边的数
                                 window.parent.left.menuTree.reload();
                                 //刷新添加和修改的下拉树
@@ -355,12 +349,6 @@
     function reloadTable(id) {
         tableIns.reload({
             url: "${yeqifu}/menu/loadAllMenu.action?id=" + id
-        })
-    }
-
-    function reloadPage(page) {
-        tableIns.reload({
-            url: "${yeqifu}/menu/loadAllMenu.action?page=" + page
         })
     }
 </script>

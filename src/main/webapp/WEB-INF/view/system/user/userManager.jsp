@@ -217,7 +217,17 @@
                     return d.available == '1' ? '<font color=blue>可用</font>' : '<font color=red>不可用</font>';
                 }}
                 , {fixed: 'right', title: '操作', toolbar: '#userBar', align: 'center',width:'300'}
-            ]]
+            ]],
+            done:function (data, curr, count) {
+                //不是第一页时，如果当前返回的数据为0那么就返回上一页
+                if(data.data.length==0&&curr!=1){
+                    tableIns.reload({
+                        page:{
+                            curr:curr-1
+                        }
+                    })
+                }
+            }
         })
 
         //模糊查询
