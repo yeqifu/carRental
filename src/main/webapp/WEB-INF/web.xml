@@ -44,4 +44,51 @@
     <url-pattern>*.action</url-pattern>
   </servlet-mapping>
 
+  <!--druid的监控页面的配置-->
+  <servlet>
+    <servlet-name>StatViewServlet</servlet-name>
+    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    <!--配置登陆名-->
+    <init-param>
+      <param-name>loginUsername</param-name>
+      <param-value>root</param-value>
+    </init-param>
+    <!--配置密码-->
+    <init-param>
+      <param-name>loginPassword</param-name>
+      <param-value>123456</param-value>
+    </init-param>
+    <!--设置白名单-->
+    <init-param>
+      <param-name>allow</param-name>
+      <param-value></param-value>
+    </init-param>
+    <!--设置黑名单-->
+    <init-param>
+      <param-name>deny</param-name>
+      <param-value></param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>StatViewServlet</servlet-name>
+    <url-pattern>/druid/*</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>WebStatFilter</filter-name>
+    <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+    <!-- 注入过滤的样式文件 -->
+    <init-param>
+      <param-name>exclusions</param-name>
+      <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>WebStatFilter</filter-name>
+    <servlet-name>StatViewServlet</servlet-name>
+  </filter-mapping>
+
+
 </web-app>

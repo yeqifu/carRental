@@ -11,8 +11,8 @@
         <property name="locations" value="classpath:db.properties"></property>
     </bean>
 
-    <!--声明dataSource-->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <!--声明dataSource 使用c3p0数据源-->
+    <bean id="dataSource1" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <!--注入连接属性-->
         <property name="driverClass" value="${jdbc.driverClass}"/>
         <property name="jdbcUrl" value="${jdbc.jdbcUrl}"/>
@@ -24,6 +24,23 @@
         <property name="maxPoolSize" value="50"></property>
         <!--设置最小的连接数-->
         <property name="minPoolSize" value="10"></property>
+    </bean>
+
+    <!--使用druid数据源-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init">
+        <!--注入连接属性-->
+        <property name="driverClassName" value="${jdbc.driverClass}"/>
+        <property name="url" value="${jdbc.jdbcUrl}"/>
+        <property name="username" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <!--初始化连接池大小-->
+        <property name="initialSize" value="5"></property>
+        <!--设置最大连接数-->
+        <property name="maxActive" value="10"></property>
+        <!--设置等待时间-->
+        <property name="maxWait" value="5000"></property>
+
+        <property name="filters" value="stat"></property>
     </bean>
 
     <!--声明sessionFactory 并注入mybatis.cfg.xml-->
