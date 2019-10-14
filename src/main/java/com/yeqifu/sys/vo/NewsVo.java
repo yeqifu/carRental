@@ -1,11 +1,11 @@
 package com.yeqifu.sys.vo;
 
-import com.yeqifu.sys.domain.LogInfo;
+import com.yeqifu.sys.domain.News;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
-public class LogInfoVo extends LogInfo {
+public class NewsVo extends News {
 
     /**
      * 分页参数
@@ -14,30 +14,16 @@ public class LogInfoVo extends LogInfo {
     private Integer limit;
 
     /**
-     * 扩展表单参数  将前台时间提交到后台
+     * 将前台页面的时间转换到后端
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date startTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date endTime;
 
-    public Date getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public Date getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
-    //接受多个id
+    /**
+     * 接受多个id
+     */
     private Integer [] ids;
 
     public Integer getPage() {
@@ -54,6 +40,22 @@ public class LogInfoVo extends LogInfo {
 
     public void setLimit(Integer limit) {
         this.limit = limit;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
 
     public Integer[] getIds() {

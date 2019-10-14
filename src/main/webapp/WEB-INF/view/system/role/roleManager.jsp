@@ -156,7 +156,8 @@
             var params = $("#searchFrm").serialize();
             //alert(params);
             tableIns.reload({
-                url: "${yeqifu}/role/loadAllRole.action?" + params
+                url: "${yeqifu}/role/loadAllRole.action?" + params,
+                page:{curr:1}
             })
         });
 

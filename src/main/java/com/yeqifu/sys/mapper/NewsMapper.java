@@ -1,7 +1,8 @@
 package com.yeqifu.sys.mapper;
 
 import com.yeqifu.sys.domain.News;
-import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 public interface NewsMapper {
     int deleteByPrimaryKey(Integer id);
@@ -15,4 +16,6 @@ public interface NewsMapper {
     int updateByPrimaryKeySelective(News record);
 
     int updateByPrimaryKey(News record);
+
+    List<News> queryAllNews(News news);
 }

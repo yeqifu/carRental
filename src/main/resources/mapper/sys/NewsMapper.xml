@@ -90,4 +90,26 @@
       opername = #{opername,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--查询所有-->
+  <select id="queryAllNews" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_news
+    <where>
+      <if test="title!=null and title!=''">
+        and title like concat("%",#{title},"%")
+      </if>
+      <if test="content!=null and content!=''">
+        and content like concat("%",#{content},"%")
+      </if>
+      <if test="startTime!=null">
+        and createtime >=#{startTime}
+      </if>
+      <if test="endTime!=null">
+        and endtime <![CDATA[<=]]>#{endTime}
+      </if>
+    </where>
+    order by createtime desc
+  </select>
 </mapper>

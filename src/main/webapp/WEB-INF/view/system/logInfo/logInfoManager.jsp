@@ -44,7 +44,7 @@
                        placeholder="请输入登陆IP" style="height: 30px;border-radius: 10px">
             </div>
         </div>
-        <%--<div class="layui-inline">
+        <div class="layui-inline">
             <label class="layui-form-label">开始时间:</label>
             <div class="layui-input-inline" style="padding: 5px">
                 <input type="text" name="startTime" id="startTime" readonly="readonly" class="layui-input layui-input-inline"
@@ -57,9 +57,9 @@
                 <input type="text" name="endTime" id="endTime" readonly="readonly" class="layui-input layui-input-inline"
                        placeholder="yyyy-MM-dd" style="height: 30px;border-radius: 10px">
             </div>
-        </div>--%>
+        </div>
 
-        <div class="layui-inline">
+        <div class="layui-inline" style="margin-left: 50px">
             <button type="button" class="layui-btn layui-btn-normal layui-icon layui-icon-search layui-btn-radius layui-btn-sm" id="doSearch">查询</button>
             <button type="reset" class="layui-btn layui-btn-warm layui-icon layui-icon-refresh layui-btn-radius layui-btn-sm">重置</button>
         </div>
@@ -102,7 +102,7 @@
             , url: '${yeqifu}/logInfo/loadAllLogInfo.action' //数据接口
             , title: '用户数据表'//数据导出来的标题
             , toolbar: "#logInfoToolBar"   //表格的工具条
-            , height: 'full-150'
+            , height: 'full-190'
             , cellMinWidth: 100 //设置列的最小默认宽度
             , page: true  //是否启用分页
             , cols: [[   //列表数据
@@ -120,7 +120,8 @@
             var params = $("#searchFrm").serialize();
             //alert(params);
             tableIns.reload({
-                url: "${yeqifu}/logInfo/loadAllLogInfo.action?" + params
+                url: "${yeqifu}/logInfo/loadAllLogInfo.action?" + params,
+                page:{curr:1}
             })
         });
 

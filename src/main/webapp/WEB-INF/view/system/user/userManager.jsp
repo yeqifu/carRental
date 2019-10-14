@@ -208,8 +208,8 @@
                 , {field: 'realname', title: '用户姓名', align: 'center',width:'110'}
                 , {field: 'loginname', title: '登陆名称', align: 'center',width:'110'}
                 , {field: 'identity', title: '身份证号', align: 'center',width:'200'}
-                , {field: 'phone', title: '手机号码', align: 'center',width:'160'}
-                , {field: 'address', title: '用户地址', align: 'center',width:'140'}
+                , {field: 'phone', title: '手机号码', align: 'center',width:'140'}
+                , {field: 'address', title: '用户地址', align: 'center',width:'130'}
                 , {field: 'sex', title: '性别', align: 'center', width:'90',templet: function (d) {
                         return d.sex == '1' ? '<font color=blue>男</font>' : '<font color=red>女</font>';
                     }}
@@ -225,7 +225,8 @@
             var params = $("#searchFrm").serialize();
             //alert(params);
             tableIns.reload({
-                url: "${yeqifu}/user/loadAllUser.action?" + params
+                url: "${yeqifu}/user/loadAllUser.action?" + params,
+                page:{curr:1}
             })
         });
 

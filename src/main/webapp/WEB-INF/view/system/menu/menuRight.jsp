@@ -210,7 +210,8 @@
             var params = $("#searchFrm").serialize();
             //alert(params);
             tableIns.reload({
-                url: "${yeqifu}/menu/loadAllMenu.action?" + params
+                url: "${yeqifu}/menu/loadAllMenu.action?" + params,
+                page:{curr:1}
             })
         });
 

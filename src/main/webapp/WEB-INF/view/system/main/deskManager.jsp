@@ -35,8 +35,22 @@
         </table>
     </div>
 </div>
+<!-- 查看公告的div -->
+<div id="desk_viewNewsDiv" style="padding: 10px;display: none;">
+    <h2 id="view_title" align="center"></h2>
+    <hr>
+    <div style="text-align: right;">
+        发布人:<span id="view_opername"></span>
+        <span style="display: inline-block;width: 20px" ></span>
+        发布时间:<span id="view_createtime"></span>
+    </div>
+    <hr>
+    <div id="view_content"></div>
+</div>
+
 <script type="text/javascript" src="${yeqifu}/static/layui/layui.js"></script>
 <script>
+
     //获取系统时间
     var newDate = '';
     getLangDate();
@@ -58,7 +72,7 @@
         var second = dateObj.getSeconds(); //当前系统时间的秒钟值
         var timeValue = "" +((hour >= 12) ? (hour >= 18) ? "晚上" : "下午" : "上午" ); //当前时间属于上午、晚上还是下午
         newDate = dateFilter(year)+"年"+dateFilter(month)+"月"+dateFilter(date)+"日 "+" "+dateFilter(hour)+":"+dateFilter(minute)+":"+dateFilter(second);
-        document.getElementById("nowTime").innerHTML = "亲爱的${user.realname}，"+timeValue+"好！ 欢迎使用汽车租赁系统。当前时间为： "+newDate+"　"+week;
+        document.getElementById("nowTime").innerHTML = "亲爱的${user.realname}，"+timeValue+"好！ 欢迎使用鑫汽车租赁系统。当前时间为： "+newDate+"　"+week;
         setTimeout("getLangDate()",1000);
     }
 
@@ -78,32 +92,37 @@
         $(".panel a").click(function(){
             parent.addTab($(this));
         })
-
-
         //最新文章列表
-        $.get("${yeqifu}/static/json/newsList.json",function(data){
+        $.get("${yeqifu}/news/loadAllNews.action?page=1&limit=10",function(data){
             var hotNewsHtml = '';
             for(var i=0;i<5;i++){
-                hotNewsHtml += '<tr>'
-                    +'<td align="left"><a href="javascript:;"> '+data.data[i].newsName+'</a></td>'
-                    +'<td>'+data.data[i].newsTime.substring(0,10)+'</td>'
+                hotNewsHtml += '<tr ondblclick="viewNews('+data.data[i].id+')">'
+                    +'<td align="left"><a href="javascript:;"> '+data.data[i].title+'</a></td>'
+                    +'<td>'+data.data[i].createtime.substring(0,10)+'</td>'
                     +'</tr>';
             }
             $(".hot_news").html(hotNewsHtml);
             $(".userAll span").text(data.length);
         })
 
-        /*//用户数量
-        $.get("../json/userList.json",function(data){
-            $(".userAll span").text(data.count);
-        })
-
-        //外部图标
-        $.get(iconUrl,function(data){
-            $(".outIcons span").text(data.split(".icon-").length-1);
-        })*/
-
     })
+
+    function viewNews(id){
+        $.get("${yeqifu}/news/loadNewsById.action",{id:id},function(news){
+            layer.open({
+                type:1,
+                title:'查看公告',
+                content:$("#desk_viewNewsDiv"),
+                area:['800px','550px'],
+                success:function(index){
+                    $("#view_title").html(news.title);
+                    $("#view_opername").html(news.opername);
+                    $("#view_createtime").html(news.createtime);
+                    $("#view_content").html(news.content);
+                }
+            });
+        });
+    }
 
 </script>
 </body>
