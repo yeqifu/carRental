@@ -33,6 +33,18 @@ public class RandomUtils {
 		Integer num=random.nextInt(9000)+1000;
 		return time+num+fileSuffix;
 	}
+
+	/**
+	 * 生成文件名使用时间+4位随机数
+	 * @param fileName 文件名称
+	 * @param suffix  临时文件的后缀
+	 */
+	public static String createFileNameUseTime(String fileName,String suffix) {
+		String fileSuffix=fileName.substring(fileName.lastIndexOf("."),fileName.length());
+		String time=sdf2.format(new Date());
+		Integer num=random.nextInt(9000)+1000;
+		return time+num+fileSuffix+suffix;
+	}
 	
 	/**
 	 * 生成文件名使用UUID

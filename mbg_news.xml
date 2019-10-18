@@ -22,27 +22,27 @@
         </javaTypeResolver>
 
         <!--指定javaBean生成的位置-->
-        <javaModelGenerator targetPackage="com.yeqifu.sys.domain"
+        <javaModelGenerator targetPackage="com.yeqifu.bus.domain"
                             targetProject=".\src\main\java">
             <property name="enableSubPackages" value="true"/>
             <!--从数据库返回的值将被清理前后的空格-->
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
         <!--指定sql映射文件生成的位置-->
-        <sqlMapGenerator targetPackage="mapper.sys"
+        <sqlMapGenerator targetPackage="mapper.bus"
                          targetProject=".\src\main\resources">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!--指定dao接口生成的位置，mapper接口-->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.yeqifu.sys.mapper"
+                             targetPackage="com.yeqifu.bus.mapper"
                              targetProject=".\src\main\java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="sys_news" domainObjectName="News"
+        <table tableName="bus_car" domainObjectName="Car"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

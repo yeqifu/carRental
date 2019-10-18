@@ -185,8 +185,8 @@
             , cols: [[   //列表数据
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'identity', title: '身份证号', align: 'center', width: '200'}
-                , {field: 'custname', title: '客户姓名', align: 'center', width: '120'}
-                , {field: 'address', title: '客户地址', align: 'center', width: '120'}
+                , {field: 'custname', title: '客户姓名', align: 'center', width: '125'}
+                , {field: 'address', title: '客户地址', align: 'center', width: '125'}
                 , {field: 'career', title: '客户职业', align: 'center', width: '150'}
                 , {field: 'phone', title: '手机号码', align: 'center', width: '150'}
 
@@ -213,7 +213,6 @@
         //模糊查询
         $("#doSearch").click(function () {
             var params = $("#searchFrm").serialize();
-//            alert(params);
             tableIns.reload({
                 url: "${yeqifu}/customer/loadAllCustomer.action?" + params,
                 page: {curr: 1}

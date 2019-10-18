@@ -19,4 +19,12 @@ public class BusController {
         return "business/customer/customerManager";
     }
 
+    /**
+     * 跳转到车辆管理
+     * @return
+     */
+    @RequestMapping("toCarManager")
+    public String toCarManager(){
+        return "business/car/carManager";
+    }
 }
