@@ -66,8 +66,8 @@
 
 ### 预览效果
 登陆页面
-![image]https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/login.PNG
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/login.PNG)
 主页
-![image]https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/index.PNG
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/index.PNG)
 菜单管理
-![image]https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/menu.PNG
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/menu.PNG)
