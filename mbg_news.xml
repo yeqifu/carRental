@@ -42,7 +42,7 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="bus_car" domainObjectName="Car"
+        <table tableName="bus_rent" domainObjectName="Rent"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

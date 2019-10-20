@@ -68,4 +68,9 @@ public class CustomerServiceImpl implements ICustomerService {
         }
 
     }
+
+    @Override
+    public Customer queryCustomerByIdentity(String identity) {
+        return this.customerMapper.selectByPrimaryKey(identity);
+    }
 }

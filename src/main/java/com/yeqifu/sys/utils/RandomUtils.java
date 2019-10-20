@@ -14,6 +14,7 @@ public class RandomUtils {
 
 	private static SimpleDateFormat sdf1=new SimpleDateFormat("yyyy-MM-dd");
 	private static SimpleDateFormat sdf2=new SimpleDateFormat("yyyyMMddHHmmssSSS");
+	private static SimpleDateFormat sdf3=new SimpleDateFormat("yyyyMMdd_HHmmss_SSS");
 	private static Random random=new Random();
 	
 	/**
@@ -54,5 +55,14 @@ public class RandomUtils {
 		String fileSuffix=fileName.substring(fileName.lastIndexOf("."),fileName.length());
 		return UUID.randomUUID().toString().replace("-", "").toUpperCase()+fileSuffix;
 	}
-	
+
+	/**
+	 * 根据时间+五位随机数生成字符串
+	 * @param preffx
+	 * @return
+	 */
+    public static String createRandomStringUseTime(String preffx) {
+
+    	return preffx+"_"+sdf3.format(new Date())+"_"+(random.nextInt(90000)+10000);
+    }
 }
