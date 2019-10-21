@@ -1,7 +1,10 @@
 package com.yeqifu.bus.service;
 
+import com.yeqifu.bus.domain.Rent;
 import com.yeqifu.bus.vo.RentVo;
 import com.yeqifu.sys.utils.DataGridView;
+
+import java.util.Map;
 
 public interface IRentService {
 
@@ -28,4 +31,12 @@ public interface IRentService {
      * @param rentid
      */
     void deleteRent(String rentid);
+
+    /**
+     * 根据出租单号查询出租单信息
+     * @param rentid
+     * @return
+     */
+    Rent queryRentByRentId(String rentid);
+
 }

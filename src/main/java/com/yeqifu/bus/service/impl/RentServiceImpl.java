@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class RentServiceImpl implements IRentService {
@@ -58,4 +59,15 @@ public class RentServiceImpl implements IRentService {
         carMapper.updateByPrimaryKeySelective(car);
         this.rentMapper.deleteByPrimaryKey(rentid);
     }
+
+    /**
+     * 根据出租单好查询出租单信息
+     * @param rentid
+     * @return
+     */
+    @Override
+    public Rent queryRentByRentId(String rentid) {
+        return this.rentMapper.selectByPrimaryKey(rentid);
+    }
+
 }

@@ -189,7 +189,7 @@
 
 <%--查看大图弹出的层开始--%>
 <div id="viewCarImageDiv" style="display: none;text-align: center">
-    <img alt="车辆图片" id="view_carimg">
+    <img alt="车辆图片" width="700px" height="450px" id="view_carimg">
 </div>
 
 <script src="${yeqifu}/static/layui/layui.js"></script>
@@ -382,7 +382,7 @@
                 type: 1,
                 title: "【"+data.carnumber+'】的车辆图片',
                 content: $("#viewCarImageDiv"),
-                area: ['1100px', '600px'],
+                area: ['750px', '500px'],
                 success: function (index) {
                     $("#view_carimg").attr("src","${yeqifu}/file/downloadShowFile.action?path="+data.carimg);
                 }
