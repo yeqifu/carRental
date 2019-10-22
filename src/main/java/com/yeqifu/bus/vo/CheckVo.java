@@ -12,6 +12,9 @@ public class CheckVo extends Check {
     private Integer page;
     private Integer limit;
 
+    //接受多个id
+    private String [] ids;
+
     /**
      * 扩展表单参数  将前台时间提交到后台
      */
@@ -50,5 +53,13 @@ public class CheckVo extends Check {
 
     public void setLimit(Integer limit) {
         this.limit = limit;
+    }
+
+    public String[] getIds() {
+        return ids;
+    }
+
+    public void setIds(String[] ids) {
+        this.ids = ids;
     }
 }

@@ -55,4 +55,13 @@ public class BusController {
         return "business/check/checkCarManager";
     }
 
+    /**
+     * 跳转到检查单管理的页面
+     * @return
+     */
+    @RequestMapping("toCheckManager")
+    public String toCheckManager(){
+        return "business/check/checkManager";
+    }
+
 }

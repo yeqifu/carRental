@@ -1,5 +1,7 @@
 package com.yeqifu.bus.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.yeqifu.bus.domain.Car;
 import com.yeqifu.bus.domain.Check;
 import com.yeqifu.bus.domain.Customer;
@@ -12,6 +14,7 @@ import com.yeqifu.bus.service.ICheckService;
 import com.yeqifu.bus.vo.CheckVo;
 import com.yeqifu.sys.constast.SysConstast;
 import com.yeqifu.sys.domain.User;
+import com.yeqifu.sys.utils.DataGridView;
 import com.yeqifu.sys.utils.RandomUtils;
 import com.yeqifu.sys.utils.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -77,5 +81,46 @@ public class CheckServiceImpl implements ICheckService {
         //更改汽车状态为未出租
         car.setIsrenting(SysConstast.RENT_CAR_FALSE);
         this.carMapper.updateByPrimaryKeySelective(car);
+    }
+
+    /**
+     * 查询所有检查单
+     * @param checkVo
+     * @return
+     */
+    @Override
+    public DataGridView queryAllCheck(CheckVo checkVo) {
+        Page<Object> page = PageHelper.startPage(checkVo.getPage(), checkVo.getLimit());
+        List<Check> data = this.checkMapper.queryAllCheck(checkVo);
+        return new DataGridView(page.getTotal(),data);
+    }
+
+    /**
+     * 批量删除检查单
+     * @param ids
+     */
+    @Override
+    public void deleteBatchCheck(String[] ids) {
+        for (String id : ids) {
+            this.checkMapper.deleteByPrimaryKey(id);
+        }
+    }
+
+    /**
+     * 删除检查单
+     * @param checkVo
+     */
+    @Override
+    public void deleteCheck(CheckVo checkVo) {
+        this.checkMapper.deleteByPrimaryKey(checkVo.getCheckid());
+    }
+
+    /**
+     * 更新检查单
+     * @param checkVo
+     */
+    @Override
+    public void updateCheck(CheckVo checkVo) {
+        this.checkMapper.updateByPrimaryKeySelective(checkVo);
     }
 }

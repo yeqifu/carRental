@@ -4,6 +4,7 @@ import com.yeqifu.bus.domain.Rent;
 import com.yeqifu.bus.service.ICheckService;
 import com.yeqifu.bus.service.IRentService;
 import com.yeqifu.bus.vo.CheckVo;
+import com.yeqifu.sys.utils.DataGridView;
 import com.yeqifu.sys.utils.ResultObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ public class CheckController {
     private ICheckService checkService;
 
     /**
-     * 根据出租单好查询出租单信息
+     * 根据出租单号查询出租单信息
      * @param rentid
      * @return
      */
@@ -38,7 +39,7 @@ public class CheckController {
     }
 
     /**
-     * 根据出租单号加载检测单的表单数据
+     * 根据出租单号加载检查单的表单数据
      * @param rentid
      * @return
      */
@@ -62,6 +63,62 @@ public class CheckController {
             e.printStackTrace();
             return ResultObj.ADD_ERROR;
         }
+    }
 
+    /**
+     * 查询所有检查单
+     * @param checkVo
+     * @return
+     */
+    @RequestMapping("loadAllCheck")
+    public DataGridView loadAllCheck(CheckVo checkVo){
+        return this.checkService.queryAllCheck(checkVo);
+    }
+
+    /**
+     * 删除一个检查单
+     * @param checkVo
+     * @return
+     */
+    @RequestMapping("deleteCheck")
+    public ResultObj deleteCheck(CheckVo checkVo){
+        try{
+            this.checkService.deleteCheck(checkVo);
+            return ResultObj.DELETE_SUCCESS;
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultObj.DELETE_ERROR;
+        }
+    }
+
+    /**
+     * 批量删除检查单
+     * @return
+     */
+    @RequestMapping("deleteBatchCheck")
+    public ResultObj deleteBatchCheck(CheckVo checkVo){
+        try{
+            this.checkService.deleteBatchCheck(checkVo.getIds());
+            return ResultObj.DELETE_SUCCESS;
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultObj.DELETE_ERROR;
+        }
+    }
+
+    /**
+     * 更新检查单
+     * @param checkVo
+     * @return
+     */
+    @RequestMapping("updateCheck")
+    public ResultObj updateCheck(CheckVo checkVo){
+        try {
+            this.checkService.updateCheck(checkVo);
+            return ResultObj.UPDATE_SUCCESS;
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultObj.UPDATE_ERROR;
+        }
     }
 }

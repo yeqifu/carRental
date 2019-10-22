@@ -272,7 +272,7 @@
                 openselectUserRole(data);
             }else if(layEvent === 'resetUserPwd'){//重置密码
                 layer.confirm('真的重置【' + data.realname + '】这个用户的密码吗？', function (index) {
-                    //向服务端发送删除指令
+                    //向服务端发送重置密码
                     $.post("${yeqifu}/user/resetUserPwd.action", {userid: data.userid}, function (res) {
                         layer.msg(res.msg);
                     })

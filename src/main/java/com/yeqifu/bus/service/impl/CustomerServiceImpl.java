@@ -58,7 +58,7 @@ public class CustomerServiceImpl implements ICustomerService {
     }
 
     /**
-     * 批量删除一个客户
+     * 批量删除客户
      * @param identitys
      */
     @Override
@@ -69,6 +69,11 @@ public class CustomerServiceImpl implements ICustomerService {
 
     }
 
+    /**
+     * 通过身份证号查询客户
+     * @param identity
+     * @return
+     */
     @Override
     public Customer queryCustomerByIdentity(String identity) {
         return this.customerMapper.selectByPrimaryKey(identity);

@@ -1,6 +1,7 @@
 package com.yeqifu.bus.service;
 
 import com.yeqifu.bus.vo.CheckVo;
+import com.yeqifu.sys.utils.DataGridView;
 
 import java.util.Map;
 
@@ -20,4 +21,28 @@ public interface ICheckService {
      * @param checkVo
      */
     void addCheck(CheckVo checkVo);
+
+    /**
+     * 查询所有检查单
+     * @return
+     */
+    DataGridView queryAllCheck(CheckVo checkVo);
+
+    /**
+     * 批量删除检查单
+     * @param ids
+     */
+    void deleteBatchCheck(String[] ids);
+
+    /**
+     * 删除检查单
+     * @param checkVo
+     */
+    void deleteCheck(CheckVo checkVo);
+
+    /**
+     * 更新检查单
+     * @param checkVo
+     */
+    void updateCheck(CheckVo checkVo);
 }
