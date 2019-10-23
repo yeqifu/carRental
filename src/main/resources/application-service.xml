@@ -16,6 +16,7 @@
     <!--告知spring在创建容器时要扫描的包-->
     <context:component-scan base-package="com.yeqifu.sys.service.impl"></context:component-scan>
     <context:component-scan base-package="com.yeqifu.bus.service.impl"></context:component-scan>
+    <context:component-scan base-package="com.yeqifu.stat.service.impl"></context:component-scan>
 
     <!-- 1,声明事务管理器 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -43,9 +44,11 @@
         <!-- 声明切面 -->
         <aop:pointcut expression="execution(* com.yeqifu.sys.service.impl.*.*(..))" id="pc1"/>
         <aop:pointcut expression="execution(* com.yeqifu.bus.service.impl.*.*(..))" id="pc2"/>
+        <aop:pointcut expression="execution(* com.yeqifu.stat.service.impl.*.*(..))" id="pc3"/>
         <!-- 织入 -->
         <aop:advisor advice-ref="advise" pointcut-ref="pc1"/>
         <aop:advisor advice-ref="advise" pointcut-ref="pc2"/>
+        <aop:advisor advice-ref="advise" pointcut-ref="pc3"/>
     </aop:config>
 
 

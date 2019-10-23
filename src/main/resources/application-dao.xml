@@ -65,7 +65,7 @@
     <!--扫描mapper接口-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <!--注入mapper接口所在的包-->
-        <property name="basePackage" value="com.yeqifu.bus.mapper,com.yeqifu.sys.mapper">
+        <property name="basePackage" value="com.yeqifu.bus.mapper,com.yeqifu.sys.mapper,com.yeqifu.stat.mapper">
         </property>
         <!--注入sqlSessionFactory-->
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
