@@ -12,6 +12,14 @@ public interface StatMapper {
     List<BaseEntity> queryCustomerAreaStat();
 
     /**
+     * 查询客户地区性别数据
+     * @return
+     * @param area
+     */
+    List<BaseEntity> queryCustomerAreaSexStat(String area);
+
+
+    /**
      * 查询业务员年度业绩
      * @param year
      * @return
@@ -24,4 +32,5 @@ public interface StatMapper {
      * @return
      */
     List<Double> queryCompanyYearGradeStat(String year);
+
 }

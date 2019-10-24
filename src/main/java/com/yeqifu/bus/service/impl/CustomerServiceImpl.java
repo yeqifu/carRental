@@ -18,7 +18,7 @@ public class CustomerServiceImpl implements ICustomerService {
     private CustomerMapper customerMapper;
 
     /**
-     * 查询所有信息
+     * 查询所有客户信息 分页
      * @param customerVo
      * @return
      */
@@ -77,5 +77,15 @@ public class CustomerServiceImpl implements ICustomerService {
     @Override
     public Customer queryCustomerByIdentity(String identity) {
         return this.customerMapper.selectByPrimaryKey(identity);
+    }
+
+    /**
+     * 查询所有客户数据不分页
+     * @param customerVo
+     * @return
+     */
+    @Override
+    public List<Customer> queryAllCustomerForList(CustomerVo customerVo) {
+        return this.customerMapper.queryAllCustomer(customerVo);
     }
 }

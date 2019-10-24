@@ -4,6 +4,8 @@ import com.yeqifu.bus.domain.Customer;
 import com.yeqifu.sys.utils.DataGridView;
 import com.yeqifu.bus.vo.CustomerVo;
 
+import java.util.List;
+
 public interface ICustomerService {
 
     /**
@@ -43,4 +45,11 @@ public interface ICustomerService {
      * @return
      */
     public Customer queryCustomerByIdentity(String identity);
+
+    /**
+     * 查询客户数据返回集合
+     * @param customerVo
+     * @return
+     */
+    List<Customer> queryAllCustomerForList(CustomerVo customerVo);
 }

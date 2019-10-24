@@ -24,6 +24,16 @@ public class StatServiceImpl implements IStatService {
     }
 
     /**
+     * 查询客户地区性别数据
+     * @param area
+     * @return
+     */
+    @Override
+    public List<BaseEntity> loadCustomerAreaSexStatList(String area) {
+        return this.statMapper.queryCustomerAreaSexStat(area);
+    }
+
+    /**
      * 查询业务员年度销售额统计数据
      * @param year
      * @return

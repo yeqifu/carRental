@@ -83,6 +83,10 @@
                     class="layui-btn layui-btn-warm layui-icon layui-icon-refresh layui-btn-radius layui-btn-sm"
                     style="margin-top: 4px">重置
             </button>
+            <button type="button"
+                    class="layui-btn layui-btn-green layui-icon layui-icon-download-circle layui-btn-radius layui-btn-sm"
+                    id="doExport" style="margin-top: 4px">导出
+            </button>
         </div>
     </div>
 
@@ -130,7 +134,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">客户职业:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="career" placeholder="请输入客户职位" autocomplete="off" class="layui-input">
+                    <input type="text" name="career" placeholder="请输入客户职业" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </div>
@@ -217,6 +221,12 @@
                 url: "${yeqifu}/customer/loadAllCustomer.action?" + params,
                 page: {curr: 1}
             })
+        });
+
+        //导出
+        $("#doExport").click(function () {
+            var params = $("#searchFrm").serialize();
+            window.location.href="${yeqifu}/stat/exportCustomer.action?"+params;
         });
 
         //监听头部工具栏事件

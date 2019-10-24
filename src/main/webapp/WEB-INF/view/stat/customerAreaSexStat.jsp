@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>公司年度业务统计</title>
+    <title>客户地区性别统计</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
@@ -19,8 +19,6 @@
     <link rel="stylesheet" href="${yeqifu}/static/layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="${yeqifu}/static/css/public.css" media="all"/>
 </head>
-
-
 <body style="height: 100%; margin: 0">
 <!-- 搜索条件开始 -->
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
@@ -30,9 +28,9 @@
 <form class="layui-form" method="post" id="searchFrm">
     <div class="layui-form-item">
         <div class="layui-inline">
-            <label class="layui-form-label">选择年份:</label>
+            <label class="layui-form-label">选择地区:</label>
             <div class="layui-input-inline" style="padding: 5px">
-                <input type="text" class="layui-input" id="year" readonly="readonly" placeholder="yyyy" style="height: 30px;border-radius: 10px">
+                <input type="text" class="layui-input" name="area" id="area" style="height: 30px;border-radius: 10px">
             </div>
             <button type="button"
                     class="layui-btn layui-btn-normal layui-icon layui-icon-search layui-btn-radius layui-btn-sm"
@@ -45,70 +43,76 @@
         </div>
     </div>
 </form>
-<div id="container" style="height: 75%;width: 90%"></div>
+
+<div id="container" style="height: 80%;width: 90%;"></div>
 <script type="text/javascript" src="${yeqifu}/static/echarts/js/echarts.min.js"></script>
 <script type="text/javascript" src="${yeqifu}/static/echarts/js/jquery-3.1.1.min.js"></script>
 <script src="${yeqifu}/static/layui/layui.js"></script>
+
 <script type="text/javascript">
 
-    layui.use(['jquery', 'layer', 'form', 'table', 'laydate'], function () {
+    layui.use(['jquery', 'layer', 'form'], function () {
         var $ = layui.jquery;
         var layer = layui.layer;
         var form = layui.form;
-        var laydate = layui.laydate;
-
-        laydate.render({
-            elem: '#year',
-            type: 'year',
-            value:new Date()
-        });
 
         $("#doSearch").click(function () {
-            getData();
+            var area=$("#area").serialize();
+
+            getData(area);
         });
 
-        function getData() {
-            var year = $("#year").val();
-
-            if (year===""){
-                year=new Date().getFullYear();
-            }
-
-            $.get("${yeqifu}/stat/loadCompanyYearGradeStatJson.action",{year:year},function (data) {
+        function getData(area) {
+            $.get("${yeqifu}/stat/loadCustomerAreaSexStatJson.action",area,function (data) {
+                for(var i=0;i<data.length;i++){
+                    if(data[i].name == 0){
+                        data[i].name = "女"
+                    }
+                    if(data[i].name == 1){
+                        data[i].name = "男"
+                    }
+                }
                 var dom = document.getElementById("container");
                 var myChart = echarts.init(dom);
                 var app = {};
                 option = null;
                 option = {
-                    title:{
-                        text:'公司年度销售额统计',
-                        x:'center'
+                    title: {
+                        text: '汽车出租系统客户地区性别统计',
+                        x: 'center',
                     },
-                    tooltip : {
-                        trigger: 'axis',
-                        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-                            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        left: 'left',
+                        data: data
+                    },
+                    series: [
+                        {
+                            name: '客户数量(占比)',
+                            type: 'pie',
+                            radius: '55%',
+                            center: ['50%', '60%'],
+                            data: data,
+                            itemStyle: {
+                                emphasis: {
+                                    shadowBlur: 10,
+                                    shadowOffsetX: 0,
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                }
+                            }
                         }
-                    },
-                    xAxis: {
-                        type: 'category',
-                        data: ['一月', '二月', '三月', '四月', '五月', '六月', '七月','八月','九月','十月','十一月','十二月']
-                    },
-                    yAxis: {
-                        type: 'value'
-                    },
-                    series: [{
-                        data: data,
-                        type: 'line'
-                    }]
+                    ]
                 };
                 ;
                 if (option && typeof option === "object") {
                     myChart.setOption(option, true);
                 }
-            });
+            })
         }
-        getData();
     });
 
 </script>

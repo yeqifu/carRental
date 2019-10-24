@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeqifu.bus.mapper.CheckMapper">
+  <resultMap id="BaseResultMap" type="com.yeqifu.bus.domain.Check">
+    <id column="checkid" jdbcType="VARCHAR" property="checkid" />
+    <result column="checkdate" jdbcType="TIMESTAMP" property="checkdate" />
+    <result column="checkdesc" jdbcType="VARCHAR" property="checkdesc" />
+    <result column="problem" jdbcType="VARCHAR" property="problem" />
+    <result column="paymoney" jdbcType="DOUBLE" property="paymoney" />
+    <result column="opername" jdbcType="VARCHAR" property="opername" />
+    <result column="rentid" jdbcType="VARCHAR" property="rentid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    checkid, checkdate, checkdesc, problem, paymoney, opername, rentid, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bus_check
+    where checkid = #{checkid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bus_check
+    where checkid = #{checkid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yeqifu.bus.domain.Check">
+    insert into bus_check (checkid, checkdate, checkdesc, 
+      problem, paymoney, opername, 
+      rentid, createtime)
+    values (#{checkid,jdbcType=VARCHAR}, #{checkdate,jdbcType=TIMESTAMP}, #{checkdesc,jdbcType=VARCHAR}, 
+      #{problem,jdbcType=VARCHAR}, #{paymoney,jdbcType=DOUBLE}, #{opername,jdbcType=VARCHAR}, 
+      #{rentid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yeqifu.bus.domain.Check">
+    insert into bus_check
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="checkid != null">
+        checkid,
+      </if>
+      <if test="checkdate != null">
+        checkdate,
+      </if>
+      <if test="checkdesc != null">
+        checkdesc,
+      </if>
+      <if test="problem != null">
+        problem,
+      </if>
+      <if test="paymoney != null">
+        paymoney,
+      </if>
+      <if test="opername != null">
+        opername,
+      </if>
+      <if test="rentid != null">
+        rentid,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="checkid != null">
+        #{checkid,jdbcType=VARCHAR},
+      </if>
+      <if test="checkdate != null">
+        #{checkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkdesc != null">
+        #{checkdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="problem != null">
+        #{problem,jdbcType=VARCHAR},
+      </if>
+      <if test="paymoney != null">
+        #{paymoney,jdbcType=DOUBLE},
+      </if>
+      <if test="opername != null">
+        #{opername,jdbcType=VARCHAR},
+      </if>
+      <if test="rentid != null">
+        #{rentid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yeqifu.bus.domain.Check">
+    update bus_check
+    <set>
+      <if test="checkdate != null">
+        checkdate = #{checkdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkdesc != null">
+        checkdesc = #{checkdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="problem != null">
+        problem = #{problem,jdbcType=VARCHAR},
+      </if>
+      <if test="paymoney != null">
+        paymoney = #{paymoney,jdbcType=DOUBLE},
+      </if>
+      <if test="opername != null">
+        opername = #{opername,jdbcType=VARCHAR},
+      </if>
+      <if test="rentid != null">
+        rentid = #{rentid,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where checkid = #{checkid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yeqifu.bus.domain.Check">
+    update bus_check
+    set checkdate = #{checkdate,jdbcType=TIMESTAMP},
+      checkdesc = #{checkdesc,jdbcType=VARCHAR},
+      problem = #{problem,jdbcType=VARCHAR},
+      paymoney = #{paymoney,jdbcType=DOUBLE},
+      opername = #{opername,jdbcType=VARCHAR},
+      rentid = #{rentid,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where checkid = #{checkid,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryAllCheck" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bus_check
+    <where>
+      <if test="checkid!=null and checkid!=''">
+        and checkid like concat("%",#{checkid},"%")
+      </if>
+      <if test="rentid!=null and rentid!=''">
+        and rentid like concat("%",#{rentid},"%")
+      </if>
+      <if test="problem!=null and problem!=''">
+        and problem like concat("%",#{problem},"%")
+      </if>
+      <if test="checkdesc!=null and checkdesc!=''">
+        and checkdesc like concat("%",#{checkdesc},"%")
+      </if>
+      <if test="startTime!=null">
+        and checkdate >=#{startTime}
+      </if>
+      <if test="endTime!=null">
+        and checkdate <![CDATA[<=]]>#{endTime}
+      </if>
+    </where>
+  </select>
+
+</mapper>

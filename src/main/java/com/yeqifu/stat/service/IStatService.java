@@ -10,10 +10,17 @@ import java.util.List;
 public interface IStatService {
 
     /**
-     * 查询客户地区的数据
+     * 查询客户地区数据
      * @return
      */
     List<BaseEntity> loadCustomerAreaStatList();
+
+    /**
+     * 查询客户地区性别数据
+     * @return
+     * @param area
+     */
+    List<BaseEntity> loadCustomerAreaSexStatList(String area);
 
     /**
      * 业务员年度销售额数据
@@ -27,4 +34,6 @@ public interface IStatService {
      * @return
      */
     List<Double> loadCompanyYearGradeStatList(String year);
+
+
 }

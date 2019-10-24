@@ -28,4 +28,12 @@ public class BaseEntity {
     public void setValue(Double value) {
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "BaseEntity{" +
+                "name='" + name + '\'' +
+                ", value=" + value +
+                '}';
+    }
 }

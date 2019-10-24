@@ -7,6 +7,11 @@
       select address as name,count(1) as value from bus_customer GROUP BY address
     </select>
 
+	<!--查询客户地区性别-->
+	<select id="queryCustomerAreaSexStat" resultType="com.yeqifu.stat.domain.BaseEntity">
+		select sex as name,count(1) as value from bus_customer where address=#{value} group by sex
+	</select>
+
     <!--查询业务员年度业绩-->
     <select id="queryOpernameYearGradeStat" resultType="com.yeqifu.stat.domain.BaseEntity">
       select opername as name,sum(price) as value from bus_rent where DATE_FORMAT(createtime,"%Y")=#{value} GROUP BY opername
