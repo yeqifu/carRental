@@ -1,5 +1,6 @@
 package com.yeqifu.bus.service;
 
+import com.yeqifu.bus.domain.Customer;
 import com.yeqifu.bus.domain.Rent;
 import com.yeqifu.bus.vo.RentVo;
 import com.yeqifu.sys.utils.DataGridView;

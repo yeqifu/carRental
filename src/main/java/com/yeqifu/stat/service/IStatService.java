@@ -35,5 +35,4 @@ public interface IStatService {
      */
     List<Double> loadCompanyYearGradeStatList(String year);
 
-
 }

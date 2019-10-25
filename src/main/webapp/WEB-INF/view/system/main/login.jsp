@@ -33,8 +33,8 @@
     </div>
     <div class="layui-form-item input-item" id="imgCode">
         <label for="code">验证码</label>
-        <input type="text" placeholder="请输入验证码" value="123" autocomplete="off" id="code" class="layui-input">
-        <img src="${yeqifu}/static/images/code.jpg">
+        <input type="text" placeholder="请输入验证码" autocomplete="off" name="code" id="code" class="layui-input">
+        <img src="${yeqifu}/login/getCode.action" onclick="this.src=this.src+'?'">
     </div>
     <div class="layui-form-item">
         <button class="layui-btn layui-block" lay-filter="login" lay-submit>登录</button>

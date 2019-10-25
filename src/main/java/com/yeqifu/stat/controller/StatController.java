@@ -1,11 +1,14 @@
 package com.yeqifu.stat.controller;
 
 import com.yeqifu.bus.domain.Customer;
+import com.yeqifu.bus.domain.Rent;
 import com.yeqifu.bus.service.ICustomerService;
+import com.yeqifu.bus.service.IRentService;
 import com.yeqifu.bus.vo.CustomerVo;
 import com.yeqifu.stat.domain.BaseEntity;
 import com.yeqifu.stat.service.IStatService;
 import com.yeqifu.stat.utils.ExportCustomerUtils;
+import com.yeqifu.stat.utils.ExportRentUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -36,6 +39,9 @@ public class StatController {
 
     @Autowired
     private ICustomerService customerService;
+
+    @Autowired
+    private IRentService rentService;
 
     /**
      * 跳转到客户地区统计页面
@@ -158,5 +164,36 @@ public class StatController {
         return null;
     }
 
+    /**
+     * 导出出租单数据
+     * @param rentid
+     */
+    @RequestMapping("exportRent")
+    public ResponseEntity<Object> exportRent(String rentid){
+        //根据出租单号查询出租单信息
+        Rent rent = rentService.queryRentByRentId(rentid);
+        //根据身份证号查询客户信息
+        Customer customer = customerService.queryCustomerByIdentity(rent.getIdentity());
+
+        String fileName=customer.getCustname()+"-的出租单.xls";
+        String sheetName=customer.getCustname()+"出租单";
+
+        ByteArrayOutputStream bos = ExportRentUtils.exportRent(rent,customer,sheetName);
+
+        try {
+            //处理文件名乱码
+            fileName= URLEncoder.encode(fileName,"UTF-8");
+            //创建 封装响应头信息的对象
+            HttpHeaders headers = new HttpHeaders();
+            //封装响应内容类型(APPLICATION_OCTET_STREAM 响应的内容不限定)
+            headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+            //设置下载的文件的名称
+            headers.setContentDispositionFormData("attachment",fileName);
+            return new ResponseEntity<Object>(bos.toByteArray(),headers, HttpStatus.CREATED);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

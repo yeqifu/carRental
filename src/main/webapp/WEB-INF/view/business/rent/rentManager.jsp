@@ -97,12 +97,12 @@
 
 <script type="text/html" id="rentBar">
     {{#  if(d.rentflag == 1){ }}
-
+    <a class="layui-btn layui-btn-green layui-btn-xs layui-btn-radius" lay-event="exportRent">导出出租单</a>
     {{#  } else { }}
     <a class="layui-btn layui-btn-xs layui-btn-radius" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs layui-btn-radius" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-green layui-btn-xs layui-btn-radius" lay-event="exportRent">导出出租单</a>
     {{#  } }}
-
 </script>
 
 <!-- 添加和修改的弹出层-->
@@ -225,7 +225,7 @@
                 , {field: 'returndate', title: '还车时间', align: 'center', width: '170'}
                 , {field: 'opername', title: '操作员', align: 'center', width: '120'}
                 , {field: 'createtime', title: '录入时间', align: 'center', width: '180'}
-                , {fixed: 'right', title: '操作', toolbar: '#rentBar', align: 'center', width: '130'}
+                , {fixed: 'right', title: '操作', toolbar: '#rentBar', align: 'center', width: '200'}
             ]],
             done: function (data, curr, count) {
                 //不是第一页时，如果当前返回的数据为0那么就返回上一页
@@ -264,6 +264,8 @@
             } else if (layEvent === 'edit') { //编辑
                 //编辑，打开修改界面
                 openUpdateRent(data);
+            }else if(layEvent==='exportRent'){//导出出租单
+                window.location.href="${yeqifu}/stat/exportRent.action?rentid="+data.rentid;
             }
         });
 

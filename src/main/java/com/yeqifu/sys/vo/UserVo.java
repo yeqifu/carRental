@@ -9,6 +9,8 @@ public class UserVo extends User {
     private Integer page;
     private Integer limit;
 
+    private String code;
+
     /**
      * 接受多个角色的id
      */
@@ -36,5 +38,13 @@ public class UserVo extends User {
 
     public void setLimit(Integer limit) {
         this.limit = limit;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
