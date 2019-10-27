@@ -43,9 +43,8 @@
 ###### 角色的添加、修改、删除
 ##### 4、用户管理
 ###### 全查询用户和模糊查询
-###### 用户的添加、修改、删除
-##### 5、重置密码
-###### 重置用户密码为123456
+###### 用户的添加、修改、删除以及重置密码
+##### 5、数据源的监控(druid monitor)
 
 ### 技术选型
 #### 后台技术选型
@@ -53,7 +52,7 @@
 * SpringMVC
 * Mybatis
 #### 前端技术选型
-* LayUI
+* LayUI、dtree、echarts
 
 ### 开发环境
 * 操作系统：Windows 10
@@ -71,3 +70,39 @@
 ![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/index.PNG)
 菜单管理
 ![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/menu.PNG)
+角色管理
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/角色管理.PNG)
+用户管理
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/用户管理.PNG)
+日志管理
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/日志管理.PNG)
+系统公告
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/系统公告.PNG)
+数据源监控
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/数据源监控.PNG)
+客户管理
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/客户管理.PNG)
+车辆管理
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/车辆管理.PNG)
+汽车出租
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/汽车出租.PNG)
+出租单管理
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/出租单管理.PNG)
+汽车入库
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/汽车入库.PNG)
+检查单管理
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/检查单管理.PNG)
+客户地区统计
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/客户地区统计.PNG)
+客户地区性别统计
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/客户地区性别统计.PNG)
+业务员年度销售额
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/业务员年度销售额.PNG)
+公司年度月份销售额
+![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/公司年度月份销售额.PNG)
+
+### 讨论
+有问题请在([issue])讨论
+
+#### 作者
+yeqifu
