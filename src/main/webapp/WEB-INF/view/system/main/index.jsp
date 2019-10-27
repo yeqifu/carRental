@@ -57,7 +57,7 @@
                             class="layui-badge-dot"></span></a>
                 </li>
                 <li class="layui-nav-item lockcms" pc>
-                    <a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>
+                    <%--<a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>--%>
                 </li>
                 <li class="layui-nav-item" id="userInfo">
                     <a href="javascript:;"><img src="${yeqifu}/static/images/face.jpg" class="layui-nav-img userAvatar"
