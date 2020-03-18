@@ -15,12 +15,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
+/**
+ * 文件上传工具类
+ * @author luoyi-
+ */
 public class AppFileUtils {
 	
 	/**
 	 * 得到文件上传的路径
 	 */
-	public static String PATH="E:/upload/";
+	public static String PATH="G:/upload/";
 	static {
 		InputStream stream = AppFileUtils.class.getClassLoader().getResourceAsStream("file.properties");
 		Properties properties=new Properties();
@@ -40,31 +44,29 @@ public class AppFileUtils {
 	 * @return
 	 */
 	public static  ResponseEntity<Object> downloadFile(HttpServletResponse response, String path, String oldName) {
-		//4,使用绝对路径+相对路径去找到文件对象
+		//4.使用绝对路径+相对路径去找到文件对象
 		File file=new File(AppFileUtils.PATH,path);
-		//5,判断文件是否存在
+		//5.判断文件是否存在
 		if(file.exists()) {
 			try {
 				try {
 					//如果名字有中文 要处理编码
-					oldName=URLEncoder.encode(oldName, "UTF-8");
+					oldName=URLEncoder.encode(oldName,"UTF-8");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				//把file转成一个bytes
-				byte [] bytes=FileUtils.readFileToByteArray(file);
+				byte[] bytes=FileUtils.readFileToByteArray(file);
 				HttpHeaders header=new HttpHeaders();
 				//封装响应内容类型(APPLICATION_OCTET_STREAM 响应的内容不限定)
 				header.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 				//设置下载的文件的名称
-				header.setContentDispositionFormData("attachment", oldName);
+				header.setContentDispositionFormData("attachment",oldName);
 				//创建ResponseEntity对象
-				ResponseEntity<Object> entity=
-						new ResponseEntity<Object>(bytes, header, HttpStatus.CREATED);
+				ResponseEntity<Object> entity = new ResponseEntity<Object>(bytes,header,HttpStatus.CREATED);
 				return entity;
 			} catch (Exception e) {
 				e.printStackTrace();
-
 			}
 			return null;
 		}else {
@@ -75,7 +77,6 @@ public class AppFileUtils {
 				out.flush();
 				out.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return null;

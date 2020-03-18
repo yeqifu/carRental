@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.util.Date;
 
+/**
+ * 登陆日志信息
+ * @author luoyi-
+ */
 public class LogInfo {
     private Integer id;
 
@@ -11,7 +15,9 @@ public class LogInfo {
 
     private String loginip;
 
-    //转换到页面上的时间
+    /**
+     * 转换到页面上的时间
+     */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date logintime;
 

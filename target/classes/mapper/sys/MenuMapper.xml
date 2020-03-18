@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeqifu.sys.mapper.MenuMapper">
+  <resultMap id="BaseResultMap" type="com.yeqifu.sys.domain.Menu">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pid" jdbcType="INTEGER" property="pid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="href" jdbcType="VARCHAR" property="href" />
+    <result column="spread" jdbcType="INTEGER" property="spread" />
+    <result column="target" jdbcType="VARCHAR" property="target" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pid, title, href, spread, target, icon, available
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_menu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yeqifu.sys.domain.Menu">
+    insert into sys_menu (id, pid, title, 
+      href, spread, target, 
+      icon, available)
+    values (#{id,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{href,jdbcType=VARCHAR}, #{spread,jdbcType=INTEGER}, #{target,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=VARCHAR}, #{available,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yeqifu.sys.domain.Menu">
+    insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pid != null">
+        pid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="href != null">
+        href,
+      </if>
+      <if test="spread != null">
+        spread,
+      </if>
+      <if test="target != null">
+        target,
+      </if>
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="available != null">
+        available,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null">
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null">
+        #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="spread != null">
+        #{spread,jdbcType=INTEGER},
+      </if>
+      <if test="target != null">
+        #{target,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        #{available,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yeqifu.sys.domain.Menu">
+    update sys_menu
+    <set>
+      <if test="pid != null">
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="href != null">
+        href = #{href,jdbcType=VARCHAR},
+      </if>
+      <if test="spread != null">
+        spread = #{spread,jdbcType=INTEGER},
+      </if>
+      <if test="target != null">
+        target = #{target,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null">
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="available != null">
+        available = #{available,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yeqifu.sys.domain.Menu">
+    update sys_menu
+    set pid = #{pid,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      href = #{href,jdbcType=VARCHAR},
+      spread = #{spread,jdbcType=INTEGER},
+      target = #{target,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      available = #{available,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--查询所有菜单-->
+  <select id="queryAllMenu" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_menu
+    <where>
+        <if test="title!=null and title!=''">
+            and title like concat("%",#{title},"%")
+        </if>
+        <if test="available!=null">
+            and available=#{available}
+        </if>
+        <if test="id!=null">
+            and (id=#{id} or pid=#{id})
+        </if>
+    </where>
+
+  </select>
+
+  <!--根据pid查询菜单数量-->
+  <select id="queryMenuByPid" resultType="java.lang.Integer">
+    select count(1) from sys_menu where pid=#{pid}
+  </select>
+
+  <!--根据菜单id删除sys_role_menu里面的数据-->
+  <delete id="deleteRoleMenuByMid">
+    delete from sys_role_menu where mid=#{mid}
+  </delete>
+
+  <!--根据角色id查询菜单-->
+  <select id="queryMenuByRoleId" resultMap="BaseResultMap">
+    select t1.* from sys_menu t1 inner join sys_role_menu t2 on(t1.id=t2.mid) WHERE t2.rid=#{rid} and t1.available=#{available}
+  </select>
+
+  <!--根据用户id查询菜单-->
+  <select id="queryMenuByUid" resultMap="BaseResultMap">
+    select distinct t1.* from sys_menu t1 inner join sys_role_menu t2 inner join sys_role_user t3 on(t1.id=t2.mid and t2.rid=t3.rid)
+    where t3.uid=#{uid} and t1.available=#{available}
+  </select>
+
+</mapper>

@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeqifu.sys.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.yeqifu.sys.domain.User">
+    <id column="userid" jdbcType="INTEGER" property="userid" />
+    <result column="loginname" jdbcType="VARCHAR" property="loginname" />
+    <result column="identity" jdbcType="VARCHAR" property="identity" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="pwd" jdbcType="VARCHAR" property="pwd" />
+    <result column="position" jdbcType="VARCHAR" property="position" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="available" jdbcType="INTEGER" property="available" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, loginname, identity, realname, sex, address, phone, pwd, position, type, 
+    available
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where userid = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_user
+    where userid = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yeqifu.sys.domain.User">
+    insert into sys_user (userid, loginname, identity, 
+      realname, sex, address, 
+      phone, pwd, position, 
+      type, available)
+    values (#{userid,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{identity,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{available,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yeqifu.sys.domain.User">
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="loginname != null">
+        loginname,
+      </if>
+      <if test="identity != null">
+        identity,
+      </if>
+      <if test="realname != null">
+        realname,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="pwd != null">
+        pwd,
+      </if>
+      <if test="position != null">
+        position,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="available != null">
+        available,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="loginname != null">
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null">
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="available != null">
+        #{available,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yeqifu.sys.domain.User">
+    update sys_user
+    <set>
+      <if test="loginname != null">
+        loginname = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null">
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        pwd = #{pwd,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null">
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="available != null">
+        available = #{available,jdbcType=INTEGER},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yeqifu.sys.domain.User">
+    update sys_user
+    set loginname = #{loginname,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      available = #{available,jdbcType=INTEGER}
+    where userid = #{userid,jdbcType=INTEGER}
+  </update>
+
+  <!--用户登陆-->
+  <select id="login" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where loginname=#{loginname} and pwd=#{pwd}
+  </select>
+
+  <!--用户查询-->
+  <select id="queryAllUser" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    <where>
+      <if test="realname!=null and realname!=''">
+        and realname like concat("%",#{realname},"%")
+      </if>
+      <if test="loginname!=null and loginname!=''">
+        and loginname like concat("%",#{loginname},"%")
+      </if>
+      <if test="identity!=null and identity!=''">
+        and identity like concat("%",#{identity},"%")
+      </if>
+      <if test="address!=null and address!=''">
+        and address like concat("%",#{address},"%")
+      </if>
+      <if test="phone!=null and phone!=''">
+        and phone like concat("%",#{phone},"%")
+      </if>
+      <if test="sex!=null">
+        and sex=#{sex}
+      </if>
+      and type!=1
+    </where>
+  </select>
+
+  <!--保存用户和角色的关系-->
+  <insert id="insertUserRole">
+    insert into sys_role_user(uid,rid) VALUES (#{uid},#{rid})
+  </insert>
+
+</mapper>

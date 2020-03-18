@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 用户管理控制器
+ * @author luoyi-
  */
 @RestController
 @RequestMapping("user")
@@ -105,7 +106,6 @@ public class UserController {
             return ResultObj.RESET_ERROR;
         }
     }
-
 
     /**
      * 加载用户管理的分配角色的数据

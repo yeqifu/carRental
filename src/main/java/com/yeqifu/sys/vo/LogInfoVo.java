@@ -5,6 +5,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+/**
+ * @author luoyi-
+ */
 public class LogInfoVo extends LogInfo {
 
     /**
@@ -37,7 +40,9 @@ public class LogInfoVo extends LogInfo {
         this.endTime = endTime;
     }
 
-    //接受多个id
+    /**
+     * 接受多个id,用于批量删除
+     */
     private Integer [] ids;
 
     public Integer getPage() {

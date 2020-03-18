@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author luoyi-
+ */
 public class TreeNode {
     private Integer id;
     @JsonProperty("parentId")
@@ -17,8 +20,10 @@ public class TreeNode {
     private String target;
     private List<TreeNode> children = new ArrayList<>();
 
-    //复选树的必要属性
-    private String checkArr = "0";//选中就是1
+    /**
+     * 复选树的必要属性   选中就是1
+     */
+    private String checkArr = "0";
 
     /**
      * 首页左边导航树的构造器
@@ -41,7 +46,7 @@ public class TreeNode {
     }
 
     /**
-     * 给dtree的复选树使用
+     * 给dTree的复选树使用
      * @param id
      * @param pid
      * @param title

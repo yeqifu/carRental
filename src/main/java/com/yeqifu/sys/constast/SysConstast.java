@@ -44,8 +44,11 @@ public interface SysConstast {
     String DISPATCH_SUCCESS = "分配成功";
     String DISPATCH_ERROR = "分配失败";
 
-    Integer CODE_SUCCESS = 0;//操作成功
-    Integer CODE_ERROR = -1;//操作失败
+    /**
+     * 操作是否成功   0：成功    -1：失败
+     */
+    Integer CODE_SUCCESS = 0;
+    Integer CODE_ERROR = -1;
 
     /**
      * 公用常量
@@ -77,14 +80,14 @@ public interface SysConstast {
     String CAR_ORDER_JC = "JC";
 
     /**
-     * 归还状态
+     * 归还状态     0：未归还   1：已归还
      */
-    Integer RENT_BACK_FALSE = 0; //未归还
-    Integer RENT_BACK_TRUE = 1; //已归还
+    Integer RENT_BACK_FALSE = 0;
+    Integer RENT_BACK_TRUE = 1;
 
     /**
-     * 出租状态
+     * 出租状态     0：未出租   1：已出租
      */
-    Integer RENT_CAR_TRUE = 1; //已出租
-    Integer RENT_CAR_FALSE = 0; //未出租
+    Integer RENT_CAR_TRUE = 1;
+    Integer RENT_CAR_FALSE = 0;
 }

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+  <display-name>Archetype Created Web Application</display-name>
+
+  <!--1、启动Spring的容器-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!--1、编码过滤器-->
+  <filter>
+    <filter-name>CharacterEncodeingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>CharacterEncodeingFilter</filter-name>
+    <servlet-name>/*</servlet-name>
+  </filter-mapping>
+
+  <!--2、Spring MVC的前端控制器，拦截所有请求-->
+  <servlet>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:springmvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcherServlet</servlet-name>
+    <url-pattern>*.action</url-pattern>
+  </servlet-mapping>
+
+  <!--druid的监控页面的配置-->
+  <servlet>
+    <servlet-name>StatViewServlet</servlet-name>
+    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    <!--配置登陆名-->
+    <init-param>
+      <param-name>loginUsername</param-name>
+      <param-value>root</param-value>
+    </init-param>
+    <!--配置密码-->
+    <init-param>
+      <param-name>loginPassword</param-name>
+      <param-value>123456</param-value>
+    </init-param>
+    <!--设置白名单-->
+    <init-param>
+      <param-name>allow</param-name>
+      <param-value></param-value>
+    </init-param>
+    <!--设置黑名单-->
+    <init-param>
+      <param-name>deny</param-name>
+      <param-value></param-value>
+    </init-param>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>StatViewServlet</servlet-name>
+    <url-pattern>/druid/*</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>WebStatFilter</filter-name>
+    <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+    <!-- 注入过滤的样式文件 -->
+    <init-param>
+      <param-name>exclusions</param-name>
+      <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>WebStatFilter</filter-name>
+    <servlet-name>StatViewServlet</servlet-name>
+  </filter-mapping>
+
+
+</web-app>

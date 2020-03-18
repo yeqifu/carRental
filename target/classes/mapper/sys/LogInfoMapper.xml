@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeqifu.sys.mapper.LogInfoMapper">
+  <resultMap id="BaseResultMap" type="com.yeqifu.sys.domain.LogInfo">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="loginname" jdbcType="VARCHAR" property="loginname" />
+    <result column="loginip" jdbcType="VARCHAR" property="loginip" />
+    <result column="logintime" jdbcType="TIMESTAMP" property="logintime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, loginname, loginip, logintime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_log_login
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_log_login
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yeqifu.sys.domain.LogInfo">
+    insert into sys_log_login (id, loginname, loginip,
+    logintime)
+    values (#{id,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{loginip,jdbcType=VARCHAR},
+    #{logintime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yeqifu.sys.domain.LogInfo">
+    insert into sys_log_login
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="loginname != null">
+        loginname,
+      </if>
+      <if test="loginip != null">
+        loginip,
+      </if>
+      <if test="logintime != null">
+        logintime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginname != null">
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="loginip != null">
+        #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null">
+        #{logintime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yeqifu.sys.domain.LogInfo">
+    update sys_log_login
+    <set>
+      <if test="loginname != null">
+        loginname = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="loginip != null">
+        loginip = #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="logintime != null">
+        logintime = #{logintime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yeqifu.sys.domain.LogInfo">
+    update sys_log_login
+    set loginname = #{loginname,jdbcType=VARCHAR},
+    loginip = #{loginip,jdbcType=VARCHAR},
+    logintime = #{logintime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!-- 查询日志 -->
+  <select id="queryAllLogInfo"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_log_login
+    <where>
+      <if test="loginname!=null and loginname!=''">
+        and loginname like concat("%",#{loginname},"%")
+      </if>
+      <if test="loginip!=null and loginip!=''">
+        and loginip like concat("%",#{loginip},"%")
+      </if>
+      <if test="startTime!=null">
+        and logintime >=#{startTime}
+      </if>
+      <if test="endTime!=null">
+        <!-- and logintime &lt; = #{endTime} -->
+        and logintime  <![CDATA[<=]]> #{endTime}
+      </if>
+    </where>
+    order by logintime desc
+  </select>
+
+</mapper>

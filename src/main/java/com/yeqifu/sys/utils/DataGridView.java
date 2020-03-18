@@ -1,8 +1,11 @@
 package com.yeqifu.sys.utils;
 
+/**
+ * @author luoyi-
+ */
 public class DataGridView {
     /**
-     * 封装layui数据表格的数据对象
+     * 封装LayUI数据表格的数据对象
      */
     private Integer code=0;
     private String msg="";

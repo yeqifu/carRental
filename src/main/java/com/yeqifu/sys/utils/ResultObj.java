@@ -2,6 +2,9 @@ package com.yeqifu.sys.utils;
 
 import com.yeqifu.sys.constast.SysConstast;
 
+/**
+ * @author luoyi-
+ */
 public class ResultObj {
 
     private Integer code;

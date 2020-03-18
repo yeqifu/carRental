@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
+/**
+ * 客户管理的控制器
+ */
 @RestController  //以json形式响应数据
 @RequestMapping("customer")
 public class CustomerController {

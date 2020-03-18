@@ -29,7 +29,7 @@
     <servlet-name>/*</servlet-name>
   </filter-mapping>
 
-  <!--2、SpringMVC的前端控制器，拦截所有请求-->
+  <!--2、Spring MVC的前端控制器，拦截所有请求-->
   <servlet>
     <servlet-name>dispatcherServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -89,6 +89,5 @@
     <filter-name>WebStatFilter</filter-name>
     <servlet-name>StatViewServlet</servlet-name>
   </filter-mapping>
-
 
 </web-app>

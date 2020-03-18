@@ -3,6 +3,9 @@ package com.yeqifu.sys.service;
 import com.yeqifu.sys.domain.News;
 import com.yeqifu.sys.utils.DataGridView;
 import com.yeqifu.sys.vo.NewsVo;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
 
 public interface INewsService {
 
@@ -37,5 +40,11 @@ public interface INewsService {
      */
     public void updateNews(NewsVo newsVo);
 
+    /**
+     * 通过id查询一条公告
+     * @param id
+     * @return
+     */
     News queryNewsById(Integer id);
+
 }

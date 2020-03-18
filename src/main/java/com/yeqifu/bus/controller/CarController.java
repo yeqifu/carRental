@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
+/**
+ * 车辆管理控制器
+ */
 @RestController
 @RequestMapping("car")
 public class CarController {

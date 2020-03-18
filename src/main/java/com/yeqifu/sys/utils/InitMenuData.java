@@ -7,6 +7,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * 初始化菜单数据
+ * @author luoyi-
  */
 public class InitMenuData {
     public static void main(String[] args) {
@@ -43,7 +44,6 @@ public class InitMenuData {
         menuMapper.insert(new Menu(20,5,"业务员年度销售额",null,0,null,"&#xe62d;",1));
 
         System.out.println("初始化完成");
-
     }
 
 }

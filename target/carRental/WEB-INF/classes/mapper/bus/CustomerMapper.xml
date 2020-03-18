@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeqifu.bus.mapper.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.yeqifu.bus.domain.Customer">
+    <id column="identity" jdbcType="VARCHAR" property="identity" />
+    <result column="custname" jdbcType="VARCHAR" property="custname" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="career" jdbcType="VARCHAR" property="career" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    identity, custname, sex, address, phone, career, createtime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from bus_customer
+    where identity = #{identity,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from bus_customer
+    where identity = #{identity,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yeqifu.bus.domain.Customer">
+    insert into bus_customer (identity, custname, sex, 
+      address, phone, career, 
+      createtime)
+    values (#{identity,jdbcType=VARCHAR}, #{custname,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{career,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yeqifu.bus.domain.Customer">
+    insert into bus_customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="identity != null">
+        identity,
+      </if>
+      <if test="custname != null">
+        custname,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="career != null">
+        career,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="identity != null">
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="custname != null">
+        #{custname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="career != null">
+        #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yeqifu.bus.domain.Customer">
+    update bus_customer
+    <set>
+      <if test="custname != null">
+        custname = #{custname,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="career != null">
+        career = #{career,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where identity = #{identity,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yeqifu.bus.domain.Customer">
+    update bus_customer
+    set custname = #{custname,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      career = #{career,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP}
+    where identity = #{identity,jdbcType=VARCHAR}
+  </update>
+
+  <select id="queryAllCustomer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from bus_customer
+    <where>
+      <if test="identity!=null and identity!=''">
+        and identity LIKE concat("%",#{identity},"%")
+      </if>
+      <if test="custname!=null and custname!=''">
+        and custname LIKE concat("%",#{custname},"%")
+      </if>
+      <if test="phone!=null and phone!=''">
+        and phone LIKE concat("%",#{phone},"%")
+      </if>
+      <if test="career!=null and career!=''">
+        and career LIKE concat("%",#{career},"%")
+      </if>
+      <if test="address!=null and address!=''">
+        and address LIKE concat("%",#{address},"%")
+      </if>
+      <if test="sex!=null">
+        and sex=#{sex}
+      </if>
+    </where>
+    order by createtime desc
+  </select>
+</mapper>

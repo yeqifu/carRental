@@ -9,15 +9,14 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
  * web的工具类
- * @author LJH
- *
+ * @author luoyi-
  */
 public class WebUtils {
 	
 	public static ServletRequestAttributes getServletRequestAttributes() {
 		return (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 	}
-	
+
 	/**
 	 * 得到当前线程的请求对象
 	 * @return
@@ -25,7 +24,7 @@ public class WebUtils {
 	public static HttpServletRequest getHttpServletRequest() {
 		return getServletRequestAttributes().getRequest();
 	}
-	
+
 	/**
 	 * 得到当前线程的响应对象
 	 */
@@ -46,6 +45,4 @@ public class WebUtils {
 	public static String getServletContext() {
 		return getHttpServletRequest().getServletPath();
 	}
-	
-	
 }

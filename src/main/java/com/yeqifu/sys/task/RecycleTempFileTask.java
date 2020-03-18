@@ -8,8 +8,12 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 
+/**
+ * 定时任务
+ * @author luoyi-
+ */
 @Component
-@EnableScheduling  //开启定时任务
+@EnableScheduling
 public class RecycleTempFileTask {
 
     /**
@@ -38,8 +42,6 @@ public class RecycleTempFileTask {
                 }
             }
         }
-
     }
-
 
 }

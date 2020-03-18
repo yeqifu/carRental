@@ -30,7 +30,6 @@ public class FileController {
 
 	/**
 	 * 添加
-	 * 
 	 * @throws IOException
 	 * @throws IllegalStateException
 	 */
@@ -58,6 +57,13 @@ public class FileController {
 		return new DataGridView(map);
 		
 	}
+
+	@RequestMapping("uploadImage")
+	@ResponseBody
+	public DataGridView uploadImage(MultipartFile file){
+		return null;
+	}
+
 	/**
 	 * 不下载只显示
 	 */

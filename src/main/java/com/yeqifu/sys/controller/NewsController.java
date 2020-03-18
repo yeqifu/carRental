@@ -3,16 +3,24 @@ package com.yeqifu.sys.controller;
 import com.yeqifu.sys.domain.News;
 import com.yeqifu.sys.domain.User;
 import com.yeqifu.sys.service.INewsService;
+import com.yeqifu.sys.service.impl.NewsServiceImpl;
 import com.yeqifu.sys.utils.DataGridView;
 import com.yeqifu.sys.utils.ResultObj;
 import com.yeqifu.sys.utils.WebUtils;
 import com.yeqifu.sys.vo.NewsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * 系统公告控制器
+ */
 @RestController
 @RequestMapping("news")
 public class NewsController {

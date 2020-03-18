@@ -1,0 +1,20 @@
+{
+    "code":0,
+	"msg":"操作成功",
+	"data":[
+	       {"id":"001","title": "湖南省", "last": false, "parentId": "0","checkArr": [{"type": "0", "checked": "0"}]},
+	       {"id":"002","title": "湖北省","last": false,"parentId": "0","checkArr": [{"type": "0", "checked": "0"}]},
+	       
+	       {"id":"001001", "title": "长沙市", "last":true, "parentId": "001","checkArr": [{"type": "0", "checked": "0"}]},
+	       {"id":"001002", "title": "株洲市", "last":true, "parentId": "001" ,"checkArr": [{"type": "0", "checked": "0"}]},
+	       {"id":"001003", "title": "湘潭市", "last":true, "parentId": "001" ,"checkArr": [{"type": "0", "checked": "0"}]},
+	       {"id":"001004","title": "衡阳市","last":true,"parentId": "001","checkArr": [{"type": "0", "checked": "0"}]},
+	       {"id":"001005","title": "郴州市","last":true,"parentId": "001","checkArr": [{"type": "0", "checked": "0"}]},
+	       
+	       {"id":"002001","title": "武汉市","last":true,"parentId": "002","checkArr": [{"type": "0", "checked": "1"}]},
+	       {"id":"002002","title": "黄冈市","last":true,"parentId": "002","checkArr": [{"type": "0", "checked": "2"}]},
+	       {"id":"002003","title": "荆州市","last":true,"parentId": "002","checkArr": [{"type": "0", "checked": "0"}]},
+	       {"id":"002004","title": "天门市","last":true,"parentId": "002","checkArr": [{"type": "0", "checked": "0"}]},
+	       {"id":"002005","title": "孝感市","last":true,"parentId": "002","checkArr": [{"type": "0", "checked": "0"}]}
+	       ]
+	}

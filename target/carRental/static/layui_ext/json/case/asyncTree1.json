@@ -1,0 +1,65 @@
+{
+	"status":{"code":200,"message":"操作成功"},
+	"data":[{
+		"id":"001",
+		"title": "湖南省",
+		"last": false,
+		"parentId": "0",
+		"children":[{
+			"id":"001001",
+			"title": "长沙市",
+			"last":true,
+			"parentId": "001"
+		},{
+			"id":"001002",
+			"title": "株洲市",
+			"last":true,
+			"parentId": "001"
+		},{
+			"id":"001003",
+			"title": "湘潭市",
+			"last":true,
+			"parentId": "001"
+		},{
+			"id":"001004",
+			"title": "衡阳市",
+			"last":true,
+			"parentId": "001"
+		},{
+			"id":"001005",
+			"title": "郴州市",
+			"last":true,
+			"parentId": "001"
+		}]
+	},{
+		"id":"002",
+		"title": "湖北省",
+		"last": false,
+		"parentId": "0",
+		"children":[{
+			"id":"002001",
+			"title": "武汉市",
+			"last":true
+		},{
+			"id":"002002",
+			"title": "黄冈市",
+			"last":true,
+			"parentId": "002"
+		},{
+			"id":"002003",
+			"title": "潜江市",
+			"last":true,
+			"parentId": "002"
+		},{
+			"id":"002004",
+			"title": "荆州市",
+			"last":true,
+			"parentId": "002"
+		},{
+			"id":"002005",
+			"title": "襄阳市",
+			"last":true,
+			"parentId": "002"			
+		}]
+	}]
+}

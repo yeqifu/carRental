@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yeqifu.sys.mapper.NewsMapper">
+  <resultMap id="BaseResultMap" type="com.yeqifu.sys.domain.News">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="opername" jdbcType="VARCHAR" property="opername" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, title, content, createtime, opername
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_news
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yeqifu.sys.domain.News">
+    insert into sys_news (id, title, content, 
+      createtime, opername)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{opername,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yeqifu.sys.domain.News">
+    insert into sys_news
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="opername != null">
+        opername,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opername != null">
+        #{opername,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yeqifu.sys.domain.News">
+    update sys_news
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="opername != null">
+        opername = #{opername,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yeqifu.sys.domain.News">
+    update sys_news
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      opername = #{opername,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <!--查询所有-->
+  <select id="queryAllNews" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_news
+    <where>
+      <if test="title!=null and title!=''">
+        and title like concat("%",#{title},"%")
+      </if>
+      <if test="content!=null and content!=''">
+        and content like concat("%",#{content},"%")
+      </if>
+      <if test="startTime!=null">
+        and createtime >=#{startTime}
+      </if>
+      <if test="endTime!=null">
+        and endtime <![CDATA[<=]]>#{endTime}
+      </if>
+    </where>
+    order by createtime desc
+  </select>
+</mapper>

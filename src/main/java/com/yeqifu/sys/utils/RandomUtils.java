@@ -7,8 +7,7 @@ import java.util.UUID;
 
 /**
  * 随机工具类
- * @author LJH
- *
+ * @author luoyi-
  */
 public class RandomUtils {
 
@@ -62,7 +61,6 @@ public class RandomUtils {
 	 * @return
 	 */
     public static String createRandomStringUseTime(String preffx) {
-
     	return preffx+"_"+sdf3.format(new Date())+"_"+(random.nextInt(90000)+10000);
     }
 }
