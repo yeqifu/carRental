@@ -15,6 +15,7 @@ import java.util.List;
 
 /**
  * 菜单管理控制器
+ * @author yeqifu
  */
 @RestController
 @RequestMapping("menu")
@@ -29,7 +30,8 @@ public class MenuController {
         User user =(User) WebUtils.getHttpSession().getAttribute("user");
 
         List<Menu> list = null;
-        menuVo.setAvailable(SysConstast.AVAILABLE_TRUE);//只查询可用的
+        //只查询可用的
+        menuVo.setAvailable(SysConstast.AVAILABLE_TRUE);
         if(user.getType()==SysConstast.USER_TYPE_SUPER){
             list = this.menuService.queryAllMenuForList(menuVo);
         }else {

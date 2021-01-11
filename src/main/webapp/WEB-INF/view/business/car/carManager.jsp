@@ -62,10 +62,13 @@
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">是否出租:</label>
-            <div class="layui-input-inline">
+            <div class="layui-inline">
                 <input type="radio" name="isrenting" value="1" title="已出租">
                 <input type="radio" name="isrenting" value="0" title="未出租">
+                <input type="radio" name="isrenting" value="2" title="审核中">
             </div>
+        </div>
+        <div class="layui-inline">
             <button type="button"
                     class="layui-btn layui-btn-normal layui-icon layui-icon-search layui-btn-radius layui-btn-sm"
                     id="doSearch" style="margin-top: 4px">查询
@@ -165,9 +168,10 @@
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">是否出租:</label>
-                    <div class="layui-input-inline">
+                    <div class="layui-inline">
                         <input type="radio" name="isrenting" value="1" title="已出租">
                         <input type="radio" name="isrenting" value="0" checked="checked" title="未出租">
+                        <input type="radio" name="isrenting" value="2" title="审核中">
                     </div>
                 </div>
             </div>
@@ -221,7 +225,7 @@
                 , {field: 'deposit', title: '出租押金', align: 'center', width: '90'}
                 , {
                     field: 'isrenting', title: '出租状态', align: 'center', width: '90', templet: function (d) {
-                        return d.isrenting == '1' ? '<font color=blue>已出租</font>' : '<font color=red>未出租</font>';
+                        return d.isrenting == '1' ? '<font color=blue>已出租</font>' : d.isrenting=='0'?'<font color=red>未出租</font>':'<font color=#f4a460>审核中</font>';
                     }
                 }
                 , {field: 'description', title: '车辆描述', align: 'center', width: '150'}
@@ -297,7 +301,7 @@
                 type: 1,
                 title: '添加车辆',
                 content: $("#saveOrUpdateDiv"),
-                area: ['700px', '480px'],
+                area: ['780px', '510px'],
                 success: function (index) {
                     //清空表单数据
                     $("#dataFrm")[0].reset();
@@ -316,7 +320,7 @@
                 type: 1,
                 title: '修改车辆',
                 content: $("#saveOrUpdateDiv"),
-                area: ['700px', '480px'],
+                area: ['780px', '510px'],
                 success: function (index) {
                     form.val("dataFrm", data);
                     $("#showCarImg").attr("src", "${yeqifu}/file/downloadShowFile.action?path=" + data.carimg);

@@ -73,37 +73,41 @@
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">出租单状态:</label>
-            <div class="layui-input-inline">
+            <div class="layui-inline">
                 <input type="radio" name="rentflag" value="1" title="已归还">
                 <input type="radio" name="rentflag" value="0" title="未归还">
+                <input type="radio" name="rentflag" value="2" title="审核中">
             </div>
-            <button type="button"
-                    class="layui-btn layui-btn-normal layui-icon layui-icon-search layui-btn-radius layui-btn-sm"
+        </div>
+        <div class="layui-inline">
+            <button type="button" class="layui-btn layui-btn-normal layui-icon layui-icon-search layui-btn-radius layui-btn-sm"
                     id="doSearch" style="margin-top: 4px">查询
             </button>
-            <button type="reset"
-                    class="layui-btn layui-btn-warm layui-icon layui-icon-refresh layui-btn-radius layui-btn-sm"
+            <button type="reset" class="layui-btn layui-btn-warm layui-icon layui-icon-refresh layui-btn-radius layui-btn-sm"
                     style="margin-top: 4px">重置
             </button>
         </div>
     </div>
-
 </form>
 
 <!-- 数据表格开始 -->
 <table class="layui-hide" id="rentTable" lay-filter="rentTable"></table>
-<div id="rentToolBar" style="display: none;">
-</div>
+<div id="rentToolBar" style="display: none;"></div>
 
 <script type="text/html" id="rentBar">
     {{#  if(d.rentflag == 1){ }}
     <a class="layui-btn layui-btn-green layui-btn-xs layui-btn-radius" lay-event="exportRent">导出出租单</a>
-    {{#  } else { }}
+    {{#  } else if(d.rentflag == 2){ }}
     <a class="layui-btn layui-btn-xs layui-btn-radius" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs layui-btn-radius" lay-event="del">删除</a>
-    <a class="layui-btn layui-btn-green layui-btn-xs layui-btn-radius" lay-event="exportRent">导出出租单</a>
-    {{#  } }}
+    <a class="layui-btn layui-btn layui-btn-xs layui-btn-radius" lay-event="rentCheck">审核</a>
+    {{#  }else{ }}
+    <a class="layui-btn layui-btn-xs layui-btn-radius" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs layui-btn-radius" lay-event="del">删除</a>
+    {{# } }}
+
 </script>
+
 
 <!-- 添加和修改的弹出层-->
 <div style="display: none;padding: 20px" id="saveOrUpdateDiv">
@@ -152,7 +156,7 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">操作员:</label>
+                <label class="layui-form-label">客户名称:</label>
                 <div class="layui-input-inline">
                     <input type="text" name="opername" id="opername" lay-verify="required" placeholder="请输入操作员" readonly="readonly" class="layui-input">
                 </div>
@@ -171,6 +175,70 @@
         </div>
     </form>
 </div>
+
+<!-- 审核出租单弹出层-->
+<div style="display: none;padding: 20px" id="checkDiv">
+    <form class="layui-form" lay-filter="dataFrmCheck" id="dataFrmCheck">
+        <div class="layui-form-item">
+            <label class="layui-form-label">出租单号:</label>
+            <div class="layui-input-block">
+                <input type="text" name="rentid" lay-verify="required" readonly="readonly" placeholder="请输入出租单号" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">起租时间:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="begindate" id="begindateCheck" readonly="readonly" lay-verify="required" placeholder="请输入起租时间" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">还车时间:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="returndate" id="returndateCheck" readonly="readonly" lay-verify="required" placeholder="请输入还车时间" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">身份证号:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="identity" lay-verify="required" readonly="readonly" placeholder="请输入身份证号"
+                           class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">车牌号:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="carnumber" lay-verify="required" readonly="readonly"  placeholder="请输入车牌号" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">出租价格:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="price" lay-verify="required" placeholder="请输入出租价格" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <label class="layui-form-label">客户名称:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="opername" lay-verify="required" placeholder="请输入客户名称" readonly="readonly" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block" style="text-align: center;padding-right: 120px">
+                <button type="button"
+                        class="layui-btn layui-btn-normal layui-btn-md layui-icon layui-icon-release layui-btn-radius"
+                        lay-filter="doSubmitCheck" lay-submit="">审核通过
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
 
 <script src="${yeqifu}/static/layui/layui.js"></script>
 <script type="text/javascript">
@@ -202,6 +270,16 @@
             type:'datetime'
         });
 
+        //审核弹出层的日期
+        laydate.render({
+            elem:'#begindateCheck',
+            type:'datetime'
+        });
+        laydate.render({
+            elem:'#returndateCheck',
+            type:'datetime'
+        });
+
         //渲染数据表格
         tableIns = table.render({
             elem: '#rentTable'   //渲染的目标对象
@@ -212,18 +290,18 @@
             , cellMinWidth: 100 //设置列的最小默认宽度
             , page: true  //是否启用分页
             , cols: [[   //列表数据
-                , {field: 'rentid', title: '出租单号', align: 'center', width: '259'}
+                , {field: 'rentid', title: '出租单号', align: 'center', width: '251'}
                 , {field: 'identity', title: '身份证号', align: 'center', width: '180'}
                 , {field: 'carnumber', title: '车牌号', align: 'center', width: '105'}
                 , {field: 'price', title: '出租价格', align: 'center', width: '90'}
                 , {
                     field: 'rentflag', title: '归还状态', align: 'center', width: '100', templet: function (d) {
-                        return d.rentflag == '1' ? '<font color=blue>已归还</font>' : '<font color=red>未归还</font>';
+                        return d.rentflag == '1' ? '<font color=blue>已归还</font>' : d.rentflag=='0'?'<font color=red>未归还</font>':'<font color=#f4a460>审核中</font>';
                     }
                 }
                 , {field: 'begindate', title: '起租时间', align: 'center', width: '170'}
                 , {field: 'returndate', title: '还车时间', align: 'center', width: '170'}
-                , {field: 'opername', title: '操作员', align: 'center', width: '120'}
+                , {field: 'opername', title: '客户名称', align: 'center', width: '120'}
                 , {field: 'createtime', title: '录入时间', align: 'center', width: '180'}
                 , {fixed: 'right', title: '操作', toolbar: '#rentBar', align: 'center', width: '200'}
             ]],
@@ -266,11 +344,14 @@
                 openUpdateRent(data);
             }else if(layEvent==='exportRent'){//导出出租单
                 window.location.href="${yeqifu}/stat/exportRent.action?rentid="+data.rentid;
+            }else if (layEvent==='rentCheck'){//进行出租单审核
+                checkRent(data);
             }
         });
 
         var url;
         var mainIndex;
+        var mainIndexCheck;
 
         //打开修改页面
         function openUpdateRent(data) {
@@ -285,6 +366,34 @@
                 }
             });
         }
+
+        //打开审核页面
+        function checkRent(data) {
+            mainIndexCheck = layer.open({
+                type: 1,
+                title: '审核出租单',
+                content: $("#checkDiv"),
+                area: ['750px', '420px'],
+                success: function (index) {
+                    form.val("dataFrmCheck", data);
+                    url = "${yeqifu}/rent/checkRent.action";
+                }
+            });
+        }
+
+        //提交审核
+        form.on("submit(doSubmitCheck)", function (obj) {
+            //序列化表单数据
+            var params = $("#dataFrmCheck").serialize();
+            $.post(url, params, function (obj) {
+                layer.msg(obj.msg);
+                //关闭审核页面的弹出层
+                layer.close(mainIndexCheck)
+                //刷新数据 表格
+                tableIns.reload();
+            })
+        });
+
 
         //保存
         form.on("submit(doSubmit)", function (obj) {

@@ -1,6 +1,8 @@
 package com.yeqifu.bus.controller;
 
+import com.yeqifu.bus.domain.Car;
 import com.yeqifu.bus.domain.Customer;
+import com.yeqifu.bus.service.ICarService;
 import com.yeqifu.bus.service.ICustomerService;
 import com.yeqifu.bus.service.IRentService;
 import com.yeqifu.bus.vo.RentVo;
@@ -25,6 +27,9 @@ public class RentController {
 
     @Autowired
     private IRentService rentService;
+
+    @Autowired
+    private ICarService carService;
 
     @Autowired
     private ICustomerService customerService;
@@ -56,8 +61,10 @@ public class RentController {
         //设置起租时间
         rentVo.setBegindate(new Date());
         //设置操作员
-        User user =(User) WebUtils.getHttpSession().getAttribute("user");
-        rentVo.setOpername(user.getRealname());
+        /*User user =(User) WebUtils.getHttpSession().getAttribute("user");
+        rentVo.setOpername(user.getRealname());*/
+        Customer customer = customerService.queryCustomerByIdentity(rentVo.getIdentity());
+        rentVo.setOpername(customer.getCustname());
         return rentVo;
     }
 
@@ -71,14 +78,14 @@ public class RentController {
         try {
             //设置创建时间
             rentVo.setCreatetime(new Date());
-            //设置归还状态
-            rentVo.setRentflag(SysConstast.RENT_BACK_FALSE);
+            //设置归还状态  默认为审核中
+            rentVo.setRentflag(SysConstast.RENT_CHECK);
             //保存
             this.rentService.addRent(rentVo);
-            return ResultObj.ADD_SUCCESS;
+            return ResultObj.ADD_SUCCESS_RENT;
         }catch (Exception e){
             e.printStackTrace();
-            return ResultObj.ADD_ERROR;
+            return ResultObj.ADD_ERROR_RENT;
         }
     }
 
@@ -113,6 +120,28 @@ public class RentController {
         }catch (Exception e){
             e.printStackTrace();
             return ResultObj.UPDATE_ERROR;
+        }
+    }
+
+    /**
+     * 审核出租单信息
+     * @param rentVo
+     * @return
+     */
+    @RequestMapping("checkRent")
+    public ResultObj checkRent(RentVo rentVo){
+        try {
+            //修改出租单的状态
+            rentVo.setRentflag(SysConstast.RENT_BACK_FALSE);
+            this.rentService.updateRent(rentVo);
+            //修改汽车的状态
+            Car car = carService.queryCarByCarNumber(rentVo.getCarnumber());
+            car.setIsrenting(SysConstast.RENT_CAR_TRUE);
+            this.carService.updateCarCheck(car);
+            return ResultObj.CHECK_SUCCESS_RENT;
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResultObj.CHECK_ERROR_RENT;
         }
     }
 

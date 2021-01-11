@@ -6,6 +6,7 @@ import com.yeqifu.sys.vo.LogInfoVo;
 
 /**
  * 日志管理的服务接口
+ * @author yeqifu
  */
 public interface ILogInfoService {
 
@@ -24,16 +25,14 @@ public interface ILogInfoService {
 
     /**
      * 根据id删除日志
-     * @param logInfoid
+     * @param logInfoId
      */
-    public void deleteLogInfo(Integer logInfoid);
+    public void deleteLogInfo(Integer logInfoId);
 
     /**
      * 批量删除日志
      * @param ids
      */
     public void deleteBatchLogInfo(Integer [] ids);
-
-
 
 }

@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>首页-汽车出租系统</title>
+    <title>首页-梦旅汽车租赁系统</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
@@ -43,7 +43,7 @@
     <!-- 顶部 -->
     <div class="layui-header header">
         <div class="layui-main mag0">
-            <a href="#" class="logo">汽车租赁</a>
+            <a href="#" class="logo">梦旅汽车租赁</a>
             <!-- 显示/隐藏菜单 icon-caidan -->
             <a href="javascript:;" class="seraph hideMenu icon-caidan"></a>
             <!-- 顶部右侧菜单 -->
@@ -57,7 +57,7 @@
                     <%--<a href="javascript:;"><i class="seraph icon-lock"></i><cite>锁屏</cite></a>--%>
                 </li>
                 <li class="layui-nav-item" id="userInfo">
-                    <a href="javascript:;"><img src="${yeqifu}/static/images/face.jpg" class="layui-nav-img userAvatar"
+                    <a href="javascript:;"><img src="${yeqifu}/static/images/userface2.jpg" class="layui-nav-img userAvatar"
                                                 width="35" height="35"><cite
                             class="adminName">${user.realname}</cite></a>
                     <dl class="layui-nav-child">
@@ -82,7 +82,7 @@
     <!-- 左侧导航 -->
     <div class="layui-side layui-bg-black">
         <div class="user-photo">
-            <a class="img" title="我的头像"><img src="${yeqifu}/static/images/face.jpg" class="userAvatar"></a>
+            <a class="img" title="我的头像"><img src="${yeqifu}/static/images/userface2.jpg" class="userAvatar"></a>
             <p>你好！<span class="userName">${user.realname}</span>, 欢迎登录</p>
         </div>
         <!-- 搜索 -->

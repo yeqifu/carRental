@@ -11,6 +11,7 @@
 	<context:component-scan base-package="com.yeqifu.sys.controller"></context:component-scan>
 	<context:component-scan base-package="com.yeqifu.bus.controller"></context:component-scan>
 	<context:component-scan base-package="com.yeqifu.stat.controller"></context:component-scan>
+
 	<!-- 配置映射器和适配器 -->
 	<mvc:annotation-driven></mvc:annotation-driven>
 

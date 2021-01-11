@@ -43,4 +43,10 @@ public interface ICarService {
      * @return
      */
     Car queryCarByCarNumber(String carnumber);
+
+    /**
+     * 出租单审核通过后修改汽车状态
+     * @param car
+     */
+    void updateCarCheck(Car car);
 }

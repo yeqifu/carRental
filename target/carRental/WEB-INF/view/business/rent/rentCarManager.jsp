@@ -9,7 +9,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>出租管理</title>
+    <title>出租汽车管理</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
@@ -53,7 +53,7 @@
 <div id="content" style="display: none;">
     <table id="carTable" lay-filter="carTable"></table>
     <div id="carBar" style="display: none;">
-        <a class="layui-btn layui-btn-warm layui-btn-xs layui-btn-radius" lay-event="rentCar">出租汽车</a>
+        <a class="layui-btn layui-btn-warm layui-btn-xs layui-btn-radius" lay-event="rentCar">租赁汽车</a>
         <a class="layui-btn layui-btn-xs layui-btn-radius" lay-event="viewImage">查看车辆大图</a>
     </div>
 </div>
@@ -91,23 +91,24 @@
                 </div>
             </div>
             <div class="layui-inline">
+                <label class="layui-form-label">客户名称:</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="opername" id="opername" lay-verify="required" placeholder="请输入操作员" readonly="readonly" class="layui-input">
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
                 <label class="layui-form-label">车牌号:</label>
                 <div class="layui-input-inline">
                     <input type="text" name="carnumber" lay-verify="required" readonly="readonly"  placeholder="请输入车牌号" class="layui-input">
                 </div>
             </div>
-        </div>
-        <div class="layui-form-item">
             <div class="layui-inline">
                 <label class="layui-form-label">出租价格:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="price" lay-verify="required" placeholder="请输入出租价格" class="layui-input">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">操作员:</label>
-                <div class="layui-input-inline">
-                    <input type="text" name="opername" id="opername" lay-verify="required" placeholder="请输入操作员" readonly="readonly" class="layui-input">
+                    <input type="text" name="price" lay-verify="required" readonly="readonly" placeholder="请输入出租价格" class="layui-input">
                 </div>
             </div>
         </div>

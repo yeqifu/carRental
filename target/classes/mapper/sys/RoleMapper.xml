@@ -7,9 +7,11 @@
         <result column="roledesc" jdbcType="VARCHAR" property="roledesc"/>
         <result column="available" jdbcType="INTEGER" property="available"/>
     </resultMap>
+    
     <sql id="Base_Column_List">
       roleid, rolename, roledesc, available
     </sql>
+    
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>

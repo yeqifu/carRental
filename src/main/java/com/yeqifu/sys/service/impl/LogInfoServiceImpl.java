@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * 日志管理
+ * @author yeqifu
  */
 @Service
 public class LogInfoServiceImpl implements ILogInfoService {
@@ -44,11 +45,11 @@ public class LogInfoServiceImpl implements ILogInfoService {
 
     /**
      * 删除单个日志
-     * @param logInfoid
+     * @param logInfoId
      */
     @Override
-    public void deleteLogInfo(Integer logInfoid) {
-        this.logInfoMapper.deleteByPrimaryKey(logInfoid);
+    public void deleteLogInfo(Integer logInfoId) {
+        this.logInfoMapper.deleteByPrimaryKey(logInfoId);
     }
 
     /**

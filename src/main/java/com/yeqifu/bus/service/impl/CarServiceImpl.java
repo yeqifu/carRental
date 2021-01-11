@@ -29,7 +29,6 @@ public class CarServiceImpl implements ICarService {
     public DataGridView queryAllCar(CarVo carVo) {
         Page<Object> page = PageHelper.startPage(carVo.getPage(),carVo.getLimit());
         List<Car> data = this.carMapper.queryAllCar(carVo);
-
         return new DataGridView(page.getTotal(),data);
     }
 
@@ -82,5 +81,10 @@ public class CarServiceImpl implements ICarService {
     @Override
     public Car queryCarByCarNumber(String carnumber) {
         return this.carMapper.selectByPrimaryKey(carnumber);
+    }
+
+    @Override
+    public void updateCarCheck(Car car) {
+        this.carMapper.updateByPrimaryKeySelective(car);
     }
 }

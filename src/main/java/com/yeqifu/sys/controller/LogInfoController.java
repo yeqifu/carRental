@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * 日志管理控制器
+ * @author yeqifu
  */
 @RestController
 @RequestMapping("logInfo")
 public class LogInfoController {
+
     @Autowired
     private ILogInfoService logInfoService;
 

@@ -24,7 +24,7 @@ public class AppFileUtils {
 	/**
 	 * 得到文件上传的路径
 	 */
-	public static String PATH="G:/upload/";
+	public static String PATH="";
 	static {
 		InputStream stream = AppFileUtils.class.getClassLoader().getResourceAsStream("file.properties");
 		Properties properties=new Properties();
@@ -43,8 +43,8 @@ public class AppFileUtils {
 	 * @param oldName
 	 * @return
 	 */
-	public static  ResponseEntity<Object> downloadFile(HttpServletResponse response, String path, String oldName) {
-		//4.使用绝对路径+相对路径去找到文件对象
+	public static ResponseEntity<Object> downloadFile(HttpServletResponse response, String path, String oldName) {
+		//4.使用绝对路径去找到文件对象
 		File file=new File(AppFileUtils.PATH,path);
 		//5.判断文件是否存在
 		if(file.exists()) {
@@ -84,7 +84,7 @@ public class AppFileUtils {
 	}
 
 	/**
-	 * 根据相对路径删除硬盘上文件
+	 * 根据绝对路径删除硬盘上文件
 	 * @param path
 	 */
 	public static void deleteFileUsePath(String path) {

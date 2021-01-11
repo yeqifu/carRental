@@ -23,6 +23,7 @@ import java.util.Date;
 
 /**
  * 用户登陆控制器
+ * @author yeqifu
  */
 @Controller
 @RequestMapping("login")

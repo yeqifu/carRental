@@ -15,8 +15,7 @@
     <result column="available" jdbcType="INTEGER" property="available" />
   </resultMap>
   <sql id="Base_Column_List">
-    userid, loginname, identity, realname, sex, address, phone, pwd, position, type, 
-    available
+    userid, loginname, identity, realname, sex, address, phone, pwd, position, type, available
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 

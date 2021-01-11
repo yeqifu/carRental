@@ -80,14 +80,16 @@ public interface SysConstast {
     String CAR_ORDER_JC = "JC";
 
     /**
-     * 归还状态     0：未归还   1：已归还
+     * 归还状态     0：未归还   1：已归还   2：审核中
      */
     Integer RENT_BACK_FALSE = 0;
     Integer RENT_BACK_TRUE = 1;
+    Integer RENT_CHECK = 2;
 
     /**
-     * 出租状态     0：未出租   1：已出租
+     * 出租状态     0：未出租   1：已出租   2：审核中
      */
     Integer RENT_CAR_TRUE = 1;
     Integer RENT_CAR_FALSE = 0;
+    Integer RENT_CAR_CHECK = 2;
 }

@@ -16,6 +16,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author luoyi-
+ */
 @Service
 public class RentServiceImpl implements IRentService {
 
@@ -31,7 +34,8 @@ public class RentServiceImpl implements IRentService {
         //更改车辆的出租状态
         Car car = new Car();
         car.setCarnumber(rentVo.getCarnumber());
-        car.setIsrenting(SysConstast.RENT_CAR_TRUE);    //设置车辆为已出租状态
+        //设置车辆为审核状态
+        car.setIsrenting(SysConstast.RENT_CAR_CHECK);
         carMapper.updateByPrimaryKeySelective(car);
     }
 
@@ -40,7 +44,6 @@ public class RentServiceImpl implements IRentService {
         Page<Object> page = PageHelper.startPage(rentVo.getPage(),rentVo.getLimit());
         List<Rent> data = this.rentMapper.queryAllRent(rentVo);
         return new DataGridView(page.getTotal(),data);
-
     }
 
     @Override
@@ -61,13 +64,23 @@ public class RentServiceImpl implements IRentService {
     }
 
     /**
-     * 根据出租单好查询出租单信息
+     * 根据出租单号查询出租单信息
      * @param rentid
      * @return
      */
     @Override
     public Rent queryRentByRentId(String rentid) {
         return this.rentMapper.selectByPrimaryKey(rentid);
+    }
+
+    /**
+     * 审核出租单
+     * @param rentVo
+     */
+    @Override
+    public void checkRent(RentVo rentVo) {
+        rentVo.setRentflag(SysConstast.RENT_BACK_FALSE);
+        this.rentMapper.updateByPrimaryKeySelective(rentVo);
     }
 
 }

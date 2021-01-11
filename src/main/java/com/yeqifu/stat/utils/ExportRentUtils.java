@@ -172,14 +172,14 @@ public class ExportRentUtils {
         row7_cell4.setCellValue(new Date().toLocaleString());
 
         //第八行
-        index++;
+/*        index++;
         HSSFRow row8 = sheet.createRow(index);
         HSSFCell row8_cell3 = row8.createCell(2);
         row8_cell3.setCellStyle(baseStyle);
         row8_cell3.setCellValue("操作员：");
         HSSFCell row8_cell4 = row8.createCell(3);
         row8_cell4.setCellStyle(baseStyle);
-        row8_cell4.setCellValue(rent.getOpername());
+        row8_cell4.setCellValue(rent.getOpername());*/
 
         //第九行
         index++;

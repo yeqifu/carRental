@@ -90,5 +90,4 @@
     <servlet-name>StatViewServlet</servlet-name>
   </filter-mapping>
 
-
 </web-app>

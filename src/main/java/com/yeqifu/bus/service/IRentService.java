@@ -40,4 +40,9 @@ public interface IRentService {
      */
     Rent queryRentByRentId(String rentid);
 
+    /**
+     * 审核出租单
+     * @param rentVo
+     */
+    void checkRent(RentVo rentVo);
 }

@@ -150,9 +150,9 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-inline">
-                <label class="layui-form-label">操作员:</label>
+                <label class="layui-form-label">客户名称:</label>
                 <div class="layui-input-inline">
-                    <input type="text" name="opername" id="opername" lay-verify="required" placeholder="请输入操作员" readonly="readonly" class="layui-input">
+                    <input type="text" name="opername" id="opername" lay-verify="required" placeholder="请输入客户名称" readonly="readonly" class="layui-input">
                 </div>
             </div>
         </div>
@@ -212,7 +212,7 @@
                 , {field: 'problem', title: '存在问题', align: 'center', width: '105'}
                 , {field: 'checkdesc', title: '问题描述', align: 'center', width: '150'}
                 , {field: 'paymoney', title: '赔付金额', align: 'center', width: '100'}
-                , {field: 'opername', title: '操作员', align: 'center', width: '100'}
+                , {field: 'opername', title: '客户名称', align: 'center', width: '100'}
                 , {field: 'checkdate', title: '检查时间', align: 'center', width: '180'}
                 , {field: 'createtime', title: '录入时间', align: 'center', width: '180'}
                 , {fixed: 'right', title: '操作', toolbar: '#checkBar', align: 'center', width: '130'}

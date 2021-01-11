@@ -20,9 +20,7 @@ import com.yeqifu.sys.utils.RandomUtils;
 
 /**
  * 文件上传下载的控制器
- * 
- * @author LJH
- *
+ * @author luoyi-
  */
 @Controller
 @RequestMapping("file")

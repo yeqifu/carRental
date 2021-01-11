@@ -1,9 +1,10 @@
-package com.yeqifu.bus.constast;
+package com.yeqifu.bus.constant;
 
 /**
  * 常量接口
+ * @author yeqifu
  */
-public interface SysConstast {
+public interface SysConstant {
 
     String USER_LOGIN_ERROR_MSG = "用户名或密码不正确";
     String USER_LOGIN_CODE_ERROR_MSG = "验证码不正确";
@@ -32,6 +33,12 @@ public interface SysConstast {
     String ADD_SUCCESS = "添加成功";
     String ADD_ERROR = "添加失败";
 
+    String ADD_SUCCESS_RENT = "添加出租单成功，请等待审核！";
+    String ADD_ERROR_RENT = "添加出租单失败";
+
+    String CHECK_SUCCESS_RENT = "审核成功";
+    String CHECK_ERROR_RENT = "审核失败";
+
     String UPDATE_SUCCESS = "更新成功";
     String UPDATE_ERROR = "更新失败";
 
@@ -44,8 +51,15 @@ public interface SysConstast {
     String DISPATCH_SUCCESS = "分配成功";
     String DISPATCH_ERROR = "分配失败";
 
-    Integer CODE_SUCCESS = 0;//操作成功
-    Integer CODE_ERROR = -1;//操作失败
+    /**
+     * 操作成功
+     */
+    Integer CODE_SUCCESS = 0;
+
+    /**
+     * 操作失败
+     */
+    Integer CODE_ERROR = -1;
 
     /**
      * 公用常量
@@ -55,6 +69,8 @@ public interface SysConstast {
     Integer CODE_TWO = 2;
     Integer CODE_THREE = 3;
 
+    /**
+     * 用户初始密码
+     */
     String USER_DEFAULT_PWD="123456";
-
 }

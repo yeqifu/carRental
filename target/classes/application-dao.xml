@@ -6,6 +6,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
     <!--引入db.properties-->
     <bean id="placeholderConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
         <property name="locations" value="classpath:db.properties"></property>
@@ -47,6 +48,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!--注入数据源-->
         <property name="dataSource" ref="dataSource"></property>
+        <!--注入pagehelper分页插件-->
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <!--注入mapper.xml-->
         <property name="mapperLocations">
@@ -54,12 +56,6 @@
                 <value>classpath:mapper/*/*Mapper.xml</value>
             </array>
         </property>
-        <!--注入分页插件-->
-        <!--<property name="plugins">-->
-            <!--<array>-->
-                <!--<bean class="com.github.pagehelper.PageInterceptor"></bean>-->
-            <!--</array>-->
-        <!--</property>-->
     </bean>
 
     <!--扫描mapper接口-->

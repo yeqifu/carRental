@@ -6,17 +6,14 @@
     <result column="cartype" jdbcType="VARCHAR" property="cartype" />
     <result column="color" jdbcType="VARCHAR" property="color" />
     <result column="price" jdbcType="DOUBLE" property="price" />
-    <result column="rentprice" jdbcType="DOUBLE"
-            property="rentprice" />
+    <result column="rentprice" jdbcType="DOUBLE" property="rentprice" />
     <result column="deposit" jdbcType="DOUBLE" property="deposit" />
-    <result column="isrenting" jdbcType="INTEGER"
-            property="isrenting" />
-    <result column="description" jdbcType="VARCHAR"
-            property="description" />
+    <result column="isrenting" jdbcType="INTEGER" property="isrenting" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="carimg" jdbcType="VARCHAR" property="carimg" />
-    <result column="createtime" jdbcType="TIMESTAMP"
-            property="createtime" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
   </resultMap>
+
   <sql id="Base_Column_List">
     carnumber, cartype, color, price, rentprice, deposit, isrenting, description,
     carimg,
@@ -184,5 +181,6 @@
         and isrenting=#{isrenting}
       </if>
     </where>
+    order by createtime desc
   </select>
 </mapper>

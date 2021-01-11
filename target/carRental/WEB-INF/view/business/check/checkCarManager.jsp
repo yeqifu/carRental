@@ -77,11 +77,11 @@
                 </div>
             </div>
             <div class="layui-inline">
-                <label class="layui-form-label">操作员:</label>
+                <label class="layui-form-label">客户名称:</label>
                 <div class="layui-input-inline" style="padding: 5px;width: 280px">
                     <input type="text" name="opername" readonly="readonly" autocomplete="off"
                            class="layui-input layui-input-inline"
-                           placeholder="请输入操作员" style="height: 30px;border-radius: 10px;width: 280px">
+                           placeholder="请输入客户名称" style="height: 30px;border-radius: 10px;width: 280px">
                 </div>
             </div>
         </div>
@@ -223,7 +223,7 @@
                 $("#rent_price").html("出租价格: "+rent.price);
                 $("#rent_begindate").html("起租时间: "+rent.begindate);
                 $("#rent_returndate").html("还车时间: "+rent.returndate);
-                $("#rent_opername").html("操作员: "+rent.opername);
+                $("#rent_opername").html("客户姓名: "+rent.opername);
 
                 //车辆信息
                 var car=obj.car;
