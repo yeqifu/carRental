@@ -102,7 +102,7 @@
 ![image](https://github.com/yeqifu/carRental/blob/master/src/main/webapp/static/images/carRental/公司年度月份销售额统计.PNG)
 
 ### 讨论
-有问题请在([issue])讨论
+有问题请在([issue])讨论 或联系我QQ：1784525940，请注明来意~
 
 #### 作者
 yeqifu
