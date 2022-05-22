@@ -83,4 +83,13 @@ public class SysController {
         return "system/news/newsManager";
     }
 
+    /**
+     * 跳转到留言管理
+     * @return
+     */
+    @RequestMapping("toMessageManager")
+    public String toMessageManager(){
+        return "system/message/messageManager";
+    }
+
 }

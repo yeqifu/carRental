@@ -8,7 +8,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>公告管理</title>
+    <title>新闻管理</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
@@ -31,17 +31,17 @@
 <form class="layui-form" method="post" id="searchFrm">
     <div class="layui-form-item">
         <div class="layui-inline">
-            <label class="layui-form-label">公告标题:</label>
+            <label class="layui-form-label">新闻标题:</label>
             <div class="layui-input-inline" style="padding: 5px">
                 <input type="text" name="title" autocomplete="off" class="layui-input layui-input-inline"
-                       placeholder="请输入公告标题" style="height: 30px;border-radius: 10px">
+                       placeholder="请输入新闻标题" style="height: 30px;border-radius: 10px">
             </div>
         </div>
         <div class="layui-inline">
-            <label class="layui-form-label">公告内容:</label>
+            <label class="layui-form-label">新闻内容:</label>
             <div class="layui-input-inline" style="padding: 5px">
                 <input type="text" name="content" autocomplete="off" class="layui-input layui-input-inline"
-                       placeholder="请输入公告内容" style="height: 30px;border-radius: 10px">
+                       placeholder="请输入新闻内容" style="height: 30px;border-radius: 10px">
             </div>
         </div>
         <div class="layui-inline">
@@ -90,14 +90,14 @@
 <div style="display: none;padding: 20px" id="saveOrUpdateDiv">
     <form class="layui-form" lay-filter="dataFrm" id="dataFrm" style="margin-right: 20px">
         <div class="layui-form-item">
-            <label class="layui-form-label">公告标题:</label>
+            <label class="layui-form-label">新闻标题:</label>
             <div class="layui-input-block">
                 <input type="hidden" name="id">
-                <input type="text" name="title" placeholder="请输入公告标题" autocomplete="off" class="layui-input">
+                <input type="text" name="title" placeholder="请输入新闻标题" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">公告内容:</label>
+            <label class="layui-form-label">新闻内容:</label>
             <div class="layui-input-block">
                 <textarea class="ea llayui-textarayui-hide" name="content" lay-verify="content" id="content"></textarea>
             </div>
@@ -117,7 +117,7 @@
     </form>
 </div>
 
-<%--查看公告的div--%>
+<%--查看新闻的div--%>
 <div id="viewNewsDiv" style="padding: 10px;display: none">
     <h2 id="view_title" align="center"></h2>
     <hr>
@@ -183,7 +183,7 @@
         tableIns = table.render({
             elem: '#newsTable'   //渲染的目标对象
             , url: '${yeqifu}/news/loadAllNews.action' //数据接口
-            , title: '用户数据表'//数据导出来的标题
+            , title: '新闻数据表'//数据导出来的标题
             , toolbar: "#newsToolBar"   //表格的工具条
             , height: 'full-190'
             , cellMinWidth: 100 //设置列的最小默认宽度
@@ -191,7 +191,7 @@
             , cols: [[   //列表数据
                 {type: 'checkbox', fixed: 'left'}
                 , {field: 'id', title: 'ID', align: 'center'}
-                , {field: 'title', title: '公告标题', align: 'center'}
+                , {field: 'title', title: '新闻标题', align: 'center'}
                 , {field: 'createtime', title: '发布时间', align: 'center'}
                 , {field: 'opername', title: '发布人', align: 'center'}
                 , {fixed: 'right', title: '操作', toolbar: '#newsBar', align: 'center'}
@@ -235,7 +235,7 @@
             var data = obj.data; //获得当前行数据
             var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
             if (layEvent === 'del') { //删除
-                layer.confirm('真的删除【' + data.title + '】这个公告么？', function (index) {
+                layer.confirm('真的删除【' + data.title + '】这个新闻么？', function (index) {
                     //向服务端发送删除指令
                     $.post("${yeqifu}/news/deleteNews.action", {id: data.id}, function (res) {
                         layer.msg(res.msg);
@@ -258,7 +258,7 @@
         function openAddNews() {
             mainIndex = layer.open({
                 type: 1,
-                title: '添加公告',
+                title: '添加新闻',
                 content: $("#saveOrUpdateDiv"),
                 area: ['700px', '540px'],
                 success: function (index) {
@@ -279,7 +279,7 @@
         function openUpdateNews(data) {
             mainIndex = layer.open({
                 type: 1,
-                title: '修改公告',
+                title: '修改新闻',
                 content: $("#saveOrUpdateDiv"),
                 area: ['700px', '540px'],
                 success: function (index) {
@@ -310,7 +310,7 @@
         function viewNews(data) {
             mainIndex = layer.open({
                 type: 1,
-                title: '查看公告',
+                title: '查看新闻',
                 content: $("#viewNewsDiv"),
                 area: ['700px', '540px'],
                 success: function (index) {
@@ -335,7 +335,7 @@
                     params += "&ids=" + item.id;
                 }
             });
-            layer.confirm('真的要删除这些公告么？', function (index) {
+            layer.confirm('真的要删除这些新闻么？', function (index) {
                 //向服务端发送删除指令
                 $.post("${yeqifu}/news/deleteBatchNews.action", params, function (res) {
                     layer.msg(res.msg);

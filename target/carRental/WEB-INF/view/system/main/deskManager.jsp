@@ -23,9 +23,9 @@
 <blockquote class="layui-elem-quote layui-bg-green">
     <div id="nowTime"></div>
 </blockquote>
-<div class="layui-row layui-col-space10">
+<div class="layui-row layui-col-space5">
     <div class="layui-col-lg6 layui-col-md6">
-        <blockquote class="layui-elem-quote title">最新文章 <i class="layui-icon layui-red">&#xe756;</i></blockquote>
+        <blockquote class="layui-elem-quote title">最新新闻 <i class="layui-icon layui-red">&#xe756;</i></blockquote>
         <table class="layui-table mag0" lay-skin="line">
             <colgroup>
                 <col>
@@ -34,8 +34,18 @@
             <tbody class="hot_news"></tbody>
         </table>
     </div>
+    <div class="layui-col-lg6 layui-col-md6">
+        <blockquote class="layui-elem-quote title">最新留言 <i class="layui-icon layui-red">&#xe756;</i></blockquote>
+        <table class="layui-table mag0" lay-skin="line">
+            <colgroup>
+                <col>
+                <col width="110">
+            </colgroup>
+            <tbody class="hot_message"></tbody>
+        </table>
+    </div>
 </div>
-<!-- 查看公告的div -->
+<!-- 查看新闻的div -->
 <div id="desk_viewNewsDiv" style="padding: 10px;display: none;">
     <h2 id="view_title" align="center"></h2>
     <hr>
@@ -46,6 +56,19 @@
     </div>
     <hr>
     <div id="view_content"></div>
+</div>
+
+<!-- 查看留言的div -->
+<div id="desk_viewMessageDiv" style="padding: 10px;display: none;">
+    <h2 id="view_title_message" align="center"></h2>
+    <hr>
+    <div style="text-align: right;">
+        发布人:<span id="view_opername_message"></span>
+        <span style="display: inline-block;width: 20px" ></span>
+        发布时间:<span id="view_createtime_message"></span>
+    </div>
+    <hr>
+    <div id="view_content_message"></div>
 </div>
 
 <script type="text/javascript" src="${yeqifu}/static/layui/layui.js"></script>
@@ -72,7 +95,7 @@
         var second = dateObj.getSeconds(); //当前系统时间的秒钟值
         var timeValue = "" +((hour >= 12) ? (hour >= 18) ? "晚上" : "下午" : "上午" ); //当前时间属于上午、晚上还是下午
         newDate = dateFilter(year)+"年"+dateFilter(month)+"月"+dateFilter(date)+"日 "+" "+dateFilter(hour)+":"+dateFilter(minute)+":"+dateFilter(second);
-        document.getElementById("nowTime").innerHTML = "亲爱的${user.realname}，"+timeValue+"好！ 欢迎使用汉鑫汽车租赁系统。当前时间为： "+newDate+"　"+week;
+        document.getElementById("nowTime").innerHTML = "亲爱的${user.realname}，"+timeValue+"好！ 欢迎使用汽车租赁系统。当前时间为： "+newDate+"　"+week;
         setTimeout("getLangDate()",1000);
     }
 
@@ -92,7 +115,7 @@
         $(".panel a").click(function(){
             parent.addTab($(this));
         })
-        //最新文章列表
+        //最新新闻列表
         $.get("${yeqifu}/news/loadAllNews.action?page=1&limit=10",function(data){
             var hotNewsHtml = '';
             for(var i=0;i<5;i++){
@@ -104,14 +127,25 @@
             $(".hot_news").html(hotNewsHtml);
             $(".userAll span").text(data.length);
         })
-
+        //最新留言列表
+        $.get("${yeqifu}/message/loadAllMessage.action?page=1&limit=10",function(data){
+            var hotMessageHtml = '';
+            for(var i=0;i<5;i++){
+                hotMessageHtml += '<tr ondblclick="viewMessage('+data.data[i].id+')">'
+                    +'<td align="left"><a href="javascript:;"> '+data.data[i].title+'</a></td>'
+                    +'<td>'+data.data[i].createtime.substring(0,10)+'</td>'
+                    +'</tr>';
+            }
+            $(".hot_message").html(hotMessageHtml);
+            $(".userAll span").text(data.length);
+        })
     });
 
     function viewNews(id){
         $.get("${yeqifu}/news/loadNewsById.action",{id:id},function(news){
             layer.open({
                 type:1,
-                title:'查看公告',
+                title:'查看新闻',
                 content:$("#desk_viewNewsDiv"),
                 area:['800px','550px'],
                 success:function(index){
@@ -119,6 +153,23 @@
                     $("#view_opername").html(news.opername);
                     $("#view_createtime").html(news.createtime);
                     $("#view_content").html(news.content);
+                }
+            });
+        });
+    }
+
+    function viewMessage(id){
+        $.get("${yeqifu}/message/loadMessageById.action",{id:id},function(message){
+            layer.open({
+                type:1,
+                title:'查看留言',
+                content:$("#desk_viewMessageDiv"),
+                area:['800px','550px'],
+                success:function(index){
+                    $("#view_title_message").html(message.title);
+                    $("#view_opername_message").html(message.opername);
+                    $("#view_createtime_message").html(message.createtime);
+                    $("#view_content_message").html(message.content);
                 }
             });
         });
