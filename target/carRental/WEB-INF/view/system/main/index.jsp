@@ -63,8 +63,12 @@
                     <dl class="layui-nav-child">
                         <dd><a href="javascript:;" data-url="${yeqifu}/static/page/user/userInfo.html"><i
                                 class="seraph icon-ziliao" data-icon="icon-ziliao"></i><cite>个人资料</cite></a></dd>
-                        <dd><a href="javascript:;" data-url="${yeqifu}/static/page/user/changePwd.html"><i
-                                class="seraph icon-xiugai" data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>
+
+                        <%--<dd><a href="${yeqifu}/sys/toChangePassword.action"><i class="seraph icon-xiugai" data-icon="icon-xiugai"></i><cite>修改密码<iframe src="/sys/toChangePassword.action"></iframe></cite></a></dd>--%>
+                        <%--<dd><a href="../sys/toChangePassword.action"><i class="seraph icon-xiugai" data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>--%>
+                        <%--<dd><a href="javascript:;" data-url="${yeqifu}/static/page/user/changePwd.html"><i class="seraph icon-xiugai" data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>--%>
+                        <dd><a href="javascript:;" data-url="${yeqifu}/sys/toChangePassword.action"><i class="seraph icon-xiugai" data-icon="icon-xiugai"></i><cite>修改密码</cite></a></dd>
+
                         <dd><a href="javascript:;" class="showNotice"><i
                                 class="layui-icon">&#xe645;</i><cite>系统公告</cite><span
                                 class="layui-badge-dot"></span></a></dd>

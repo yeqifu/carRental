@@ -41,9 +41,6 @@
     </div>
     <div class="layui-form-item layui-row" style="text-align: center;color: red;">
         ${error}
-        <%--<a href="javascript:;" class="seraph icon-qq layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>
-        <a href="javascript:;" class="seraph icon-wechat layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>
-        <a href="javascript:;" class="seraph icon-sina layui-col-xs4 layui-col-sm4 layui-col-md4 layui-col-lg4"></a>--%>
     </div>
 </form>
 <script type="text/javascript" src="${yeqifu}/static/layui/layui.js"></script>

@@ -11,6 +11,7 @@ G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\utils\WebUtils.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\service\IRoleService.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\mapper\CheckMapper.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\stat\utils\ExportRentUtils.java
+G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\mapper\FranchiseeMapper.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\controller\BusController.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\service\ICustomerService.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\domain\News.java
@@ -19,11 +20,11 @@ G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\utils\TreeNode.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\constast\SysConstast.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\listener\AppListener.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\controller\NewsController.java
+G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\vo\FranchiseeVo.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\vo\UserVo.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\controller\CarController.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\service\impl\CheckServiceImpl.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\mapper\RoleMapper.java
-G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\constast\SysConstast.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\service\impl\CarServiceImpl.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\controller\LogInfoController.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\utils\TreeNodeBuilder.java
@@ -31,11 +32,13 @@ G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\mapper\MenuMapper.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\service\impl\NewsServiceImpl.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\controller\RentController.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\controller\CustomerController.java
+G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\service\impl\FranchiseeServiceImpl.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\controller\RoleController.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\utils\InitMenuData.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\vo\CheckVo.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\controller\UserController.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\task\RecycleTempFileTask.java
+G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\controller\FranchiseeController.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\service\IMenuService.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\utils\ResultObj.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\stat\utils\ExportHSSFCellStyle.java
@@ -44,7 +47,9 @@ G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\vo\RentVo.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\utils\RandomUtils.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\stat\mapper\StatMapper.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\vo\CarVo.java
+G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\service\FranchiseeService.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\service\impl\RoleServiceImpl.java
+G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\domain\Franchisee.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\service\ICarService.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\mapper\UserMapper.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\test\MBGTest.java
@@ -62,6 +67,7 @@ G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\mapper\NewsMapper.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\service\impl\RentServiceImpl.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\stat\domain\BaseEntity.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\service\impl\LogInfoServiceImpl.java
+G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\constant\SysConstant.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\sys\service\impl\MenuServiceImpl.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\stat\utils\ExportCustomerUtils.java
 G:\IDEA_workspace\carRental\src\main\java\com\yeqifu\bus\controller\CheckController.java

@@ -5,10 +5,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * 页面跳转控制器
+ * @author yeqifu
  */
 @Controller
 @RequestMapping("sys")
 public class SysController {
+
+    /**
+     * 跳转到修改密码界面
+     * @return
+     */
+    @RequestMapping("toChangePassword")
+    public String toChangePassword(){
+        return "system/user/changePassword";
+    }
 
     /**
      * 跳转到菜单管理

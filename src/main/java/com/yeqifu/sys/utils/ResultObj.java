@@ -74,7 +74,7 @@ public class ResultObj {
     public static final ResultObj STATUS_FALSE = new ResultObj(SysConstant.CODE_ERROR);
 
 
-    private ResultObj(Integer code, String msg) {
+    public ResultObj(Integer code, String msg) {
         this.code = code;
         this.msg = msg;
     }

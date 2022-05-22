@@ -10,6 +10,7 @@ import java.io.File;
 
 /**
  * 定时任务
+ *
  * @author luoyi-
  */
 @Component
@@ -20,22 +21,23 @@ public class RecycleTempFileTask {
      * 每天晚上12点执行
      */
     @Scheduled(cron = "0 0 0 * * ? ")
-    public void recycleTempFile(){
+    public void recycleTempFile() {
         File file = new File(AppFileUtils.PATH);
     }
 
     /**
      * 删除图片
+     *
      * @param file
      */
-    public void deleteFile(File file){
-        if (null!=file){
+    public void deleteFile(File file) {
+        if (null != file) {
             File[] listFiles = file.listFiles();
-            if (null!=listFiles&&listFiles.length>0){
+            if (null != listFiles && listFiles.length > 0) {
                 for (File f : listFiles) {
-                    if (f.getName().endsWith(SysConstast.FILE_UPLOAD_TEMP)){
+                    if (f.getName().endsWith(SysConstast.FILE_UPLOAD_TEMP)) {
                         f.delete();
-                    }else {
+                    } else {
                         //如果是文件夹，在递归删除一次
                         deleteFile(f);
                     }

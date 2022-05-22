@@ -1,10 +1,13 @@
 package com.yeqifu.sys.controller;
 
+import com.yeqifu.sys.domain.User;
 import com.yeqifu.sys.service.IUserService;
 import com.yeqifu.sys.utils.DataGridView;
 import com.yeqifu.sys.utils.ResultObj;
+import com.yeqifu.sys.utils.WebUtils;
 import com.yeqifu.sys.vo.UserVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -130,6 +133,36 @@ public class UserController {
         }catch (Exception e){
             e.printStackTrace();
             return ResultObj.DISPATCH_ERROR;
+        }
+    }
+
+    /**
+     * 修改用户的密码
+     * @param oldPassword  用户的原密码
+     * @param newPassword     用户第一次输入的新密码
+     * @param confirmPassword     用户第二次输入的新密码
+     * @return
+     */
+    @RequestMapping("changePassword")
+    public ResultObj changePassword(String oldPassword,String newPassword,String confirmPassword){
+        if (newPassword.equals(confirmPassword)){
+            String md5DigestAsHex = DigestUtils.md5DigestAsHex(oldPassword.getBytes());
+            //1.先通过session获得当前用户
+            User user =(User) WebUtils.getHttpSession().getAttribute("user");
+            if (md5DigestAsHex.equals(user.getPwd())){
+                // 对用户输入的新密码进行加密
+                String newPasswordEncryption = DigestUtils.md5DigestAsHex(newPassword.getBytes());
+                user.setPwd(newPasswordEncryption);
+                UserVo userVo = new UserVo();
+                userVo.setUserid(user.getUserid());
+                userVo.setPwd(newPasswordEncryption);
+                userService.updateUser(userVo);
+                return new ResultObj(200,"修改密码成功，请重新登陆！");
+            }else {
+                return new ResultObj(500,"您输入的原密码错误！");
+            }
+        }else {
+            return new ResultObj(500,"您输入的两次新密码不一致！");
         }
     }
 
