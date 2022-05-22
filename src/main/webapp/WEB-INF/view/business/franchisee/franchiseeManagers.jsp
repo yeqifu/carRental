@@ -70,6 +70,7 @@
             <div class="layui-inline">
                 <label class="layui-form-label">加盟商姓名:</label>
                 <div class="layui-input-inline">
+                    <input type="hidden" name="id">
                     <input type="text" name="name" lay-verify="required" placeholder="请输入加盟商姓名" autocomplete="off"
                            class="layui-input">
                 </div>
@@ -147,9 +148,6 @@
                 case 'add':
                     openAddFranchisee();
                     break;
-                case 'deleteBatch':
-                    deleteBatch();
-                    break;
             }
         });
 
@@ -160,7 +158,7 @@
             if (layEvent === 'del') { //删除
                 layer.confirm('真的删除【' + data.name + '】这个加盟商么？', function (index) {
                     //向服务端发送删除指令
-                    $.post("${yeqifu}/franchisee/deleteFranchisee.action", {identity: data.identity}, function (res) {
+                    $.post("${yeqifu}/franchisee/deleteFranchisee.action", {id: data.id}, function (res) {
                         layer.msg(res.msg);
                         //刷新数据表格
                         tableIns.reload();

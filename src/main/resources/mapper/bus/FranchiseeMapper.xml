@@ -20,17 +20,17 @@
         from bus_franchisee
         where id = #{id}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete
         from bus_franchisee
         where id = #{id}
     </delete>
     <insert id="insert" parameterType="com.yeqifu.bus.domain.Franchisee">
-        insert into bus_franchisee (id, name, phone)
-        values (#{id}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
+        insert into bus_franchisee (name, phone)
+        values (#{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR})
     </insert>
 
-    <insert id="insertSelective" parameterType="com.yeqifu.bus.domain.Customer">
+    <insert id="insertSelective" parameterType="com.yeqifu.bus.domain.Franchisee">
         insert into bus_franchisee
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -40,7 +40,7 @@
                 name,
             </if>
             <if test="phone != null">
-                phone,
+                phone
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -51,7 +51,7 @@
                 #{name,jdbcType=VARCHAR},
             </if>
             <if test="phone != null">
-                #{phone,jdbcType=VARCHAR},
+                #{phone,jdbcType=VARCHAR}
             </if>
         </trim>
     </insert>
@@ -63,18 +63,18 @@
             where id = #{id}
     </update>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.yeqifu.bus.domain.Customer">
+    <update id="updateByPrimaryKeySelective" parameterType="com.yeqifu.bus.domain.Franchisee">
         update bus_franchisee
         <set>
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
             </if>
             <if test="phone != null">
-                phone = #{phone,jdbcType=VARCHAR},
+                phone = #{phone,jdbcType=VARCHAR}
             </if>
         </set>
         <where>
-            id = #{id}
+            id = #{id,jdbcType=INTEGER}
         </where>
     </update>
 

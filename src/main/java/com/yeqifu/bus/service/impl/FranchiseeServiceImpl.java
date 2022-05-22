@@ -38,21 +38,21 @@ public class FranchiseeServiceImpl implements FranchiseeService {
     /**
      * 添加一个加盟商
      *
-     * @param franchiseeVo
+     * @param franchisee
      */
     @Override
-    public void addFranchisee(FranchiseeVo franchiseeVo) {
-        this.franchiseeMapper.insertSelective(franchiseeVo);
+    public void addFranchisee(Franchisee franchisee) {
+        this.franchiseeMapper.insert(franchisee);
     }
 
     /**
      * 更新一个加盟商
      *
-     * @param franchiseeVo
+     * @param franchisee
      */
     @Override
-    public void updateFranchisee(FranchiseeVo franchiseeVo) {
-        this.franchiseeMapper.updateByPrimaryKeySelective(franchiseeVo);
+    public void updateFranchisee(Franchisee franchisee) {
+        this.franchiseeMapper.updateByPrimaryKeySelective(franchisee);
     }
 
     @Override

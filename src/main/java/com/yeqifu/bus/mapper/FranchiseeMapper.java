@@ -15,9 +15,9 @@ import java.util.List;
 public interface FranchiseeMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Franchisee record);
+    int insert(Franchisee franchisee);
 
-    int insertSelective(FranchiseeVo franchiseeVo);
+    int insertSelective(Franchisee franchisee);
 
     Franchisee selectByPrimaryKey(String identity);
 

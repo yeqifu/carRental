@@ -11,6 +11,7 @@ import com.yeqifu.sys.utils.DataGridView;
 import com.yeqifu.sys.utils.ResultObj;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -60,13 +61,14 @@ public class FranchiseeController {
     /**
      * 修改一个加盟商
      *
-     * @param franchiseeVo
+     * @param franchisee
      * @return
      */
     @RequestMapping("updateFranchisee")
-    public ResultObj updateFranchisee(FranchiseeVo franchiseeVo) {
+    public ResultObj updateFranchisee(Franchisee franchisee) {
+        System.out.println(franchisee.toString());
         try {
-            this.franchiseeService.updateFranchisee(franchiseeVo);
+            this.franchiseeService.updateFranchisee(franchisee);
             return ResultObj.UPDATE_SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
@@ -77,13 +79,13 @@ public class FranchiseeController {
     /**
      * 删除一个加盟商
      *
-     * @param franchiseeVo
+     * @param id
      * @return
      */
     @RequestMapping("deleteFranchisee")
-    public ResultObj deleteFranchisee(FranchiseeVo franchiseeVo) {
+    public ResultObj deleteFranchisee(Integer id) {
         try {
-            this.franchiseeService.deleteFranchisee(franchiseeVo.getId());
+            this.franchiseeService.deleteFranchisee(id);
             return ResultObj.DELETE_SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
